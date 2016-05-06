@@ -1,0 +1,5 @@
+Исходники
+wa-config/db.php
+wa-cache/*
+wa-log/*
+.idea
