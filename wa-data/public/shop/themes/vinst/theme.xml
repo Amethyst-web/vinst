@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE theme PUBLIC "wa-app-theme" "http://www.webasyst.com/wa-content/xml/wa-app-theme.dtd" >
+<theme id="vinst" system="1" vendor="webasyst" app="shop" version="1.0.0">
+    <name locale="en_US">Vinst Theme</name>
+    <name locale="ru_RU">Тема Vinst</name>
+    <files>
+        <file path="index.html">
+            <description locale="en_US">Common layout</description>
+            <description locale="ru_RU">Основной шаблон</description>
+        </file>
+        <file path="_item.html">
+            <description locale="en_US">Product preview template</description>
+            <description locale="ru_RU">Шаблон превью продукта</description>
+        </file>
+        <file path="_productModal.html">
+            <description locale="en_US">Product modal</description>
+            <description locale="ru_RU">Модальное окно продукта</description>
+        </file>
+        <file path="cart.html">
+            <description locale="en_US">Cart page</description>
+            <description locale="ru_RU">Страница корзины</description>
+        </file>
+        <file path="category.html">
+            <description locale="en_US">Category page</description>
+            <description locale="ru_RU">Страница каталога</description>
+        </file>
+        <file path="checkout.confirmation.html">
+            <description locale="en_US">Confirmation block</description>
+            <description locale="ru_RU">Блок подтверждения заказа</description>
+        </file>
+        <file path="checkout.contactinfo.html">
+            <description locale="en_US">Contact info block</description>
+            <description locale="ru_RU">Блок с контактными данными покупателя</description>
+        </file>
+        <file path="checkout.error.html">
+            <description locale="en_US">Order error page</description>
+            <description locale="ru_RU">Страница при ошибке в заказе</description>
+        </file>
+        <file path="checkout.html">
+            <description locale="en_US">Checkout page</description>
+            <description locale="ru_RU">Страница оформления заказа</description>
+        </file>
+        <file path="checkout.shipping.html">
+            <description locale="en_US">Shipping block</description>
+            <description locale="ru_RU">Блок доставки</description>
+        </file>
+        <file path="checkout.success.html">
+            <description locale="en_US">Order success page</description>
+            <description locale="ru_RU">Страница успешного оформления заказа</description>
+        </file>
+        <file path="error.html">
+            <description locale="en_US">Error page</description>
+            <description locale="ru_RU">Страница ошибки</description>
+        </file>
+        <file path="footer.html">
+            <description locale="en_US">Footer template</description>
+            <description locale="ru_RU">Шаблон подвала</description>
+        </file>
+        <file path="head.html">
+            <description locale="en_US">Head block</description>
+            <description locale="ru_RU">Блок head</description>
+        </file>
+        <file path="header.html">
+            <description locale="en_US">Header block</description>
+            <description locale="ru_RU">Шапка страницы</description>
+        </file>
+        <file path="home.html">
+            <description locale="en_US">Home page</description>
+            <description locale="ru_RU">Главная страница</description>
+        </file>
+        <file path="nav.html">
+            <description locale="en_US">Nav menu</description>
+            <description locale="ru_RU">Навигационная панель</description>
+        </file>
+        <file path="page.html">
+            <description locale="en_US">Page template</description>
+            <description locale="ru_RU">Шаблон информационной страницы</description>
+        </file>
+        <file path="product.html">
+            <description locale="en_US">Product page</description>
+            <description locale="ru_RU">Страница продукта</description>
+        </file>
+    </files>
+</theme>

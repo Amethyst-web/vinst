@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-xs-9">
+        <h2>[`Самые популярные`]</h2>
+    </div>
+    <div class="col-xs-3">
+        <div class="social-icons pull-right">
+            <a href="#"><img src="{$wa_theme_url}img/icon-facebook.png" alt="facebook"></a>
+            <a href="#"><img src="{$wa_theme_url}img/icon-twitter.png" alt="twitter"></a>
+            <a href="#"><img src="{$wa_theme_url}img/icon-linkedin.png" alt="linkedin"></a>
+            <a href="#"><img src="{$wa_theme_url}img/icon-rss.png" alt="rss"></a>
+        </div>
+    </div>
+</div>
+<!-- END CONTENT ITEM -->
+
+<!-- START CONTENT ITEM -->
+<div class="row product-list-inline-small">
+    {foreach $products as $prod}
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="thumbnail">
+                <a href="{$prod.frontend_url}">{$wa->shop->productImgHtml($prod, '500x500', ['itemprop' => 'image', 'class'=>'img-responsive', 'alt' => $prod.name, 'default' => "`$wa_theme_url`img/no-image.png"])}</a>
+                <div class="caption">
+                    <a href="{$prod.frontend_url}">{$prod.name}</a>
+                    <p>&nbsp;<span class="label label-info price pull-right">{$prod.price} {$prod.currency}</span></p>
+                </div>
+            </div>
+        </div>
+    {/foreach}
+</div>

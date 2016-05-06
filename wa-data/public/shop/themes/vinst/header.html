@@ -1,0 +1,45 @@
+<header>
+
+    <div class="row header-top hidden-print">
+        <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
+
+            <!-- START CONTENT ITEM -->
+            <img src="{$wa_theme_url}img/logo.png" alt="[`vinst logo`]" class="img-responsive">
+            <!-- END CONTENT ITEM -->
+
+        </div>
+        <div class="col-xs-12 col-sm-7 col-md-9 col-lg-9">
+            <div class="row hidden-print" id="search-row">
+                <div class="col-xs-12">
+
+                    <!-- START CONTENT ITEM -->
+                    <div class="input-group form-search header-search">
+                        <input class="form-control search-query" type="text" placeholder="[`Поиск по продукции...`]">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">[`Искать`]</button>
+                            </span>
+                    </div>
+                    <!-- END CONTENT ITEM -->
+
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    {include file="`$wa_active_theme_path`/nav.html" inline}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="slider-wrapper theme-bar">
+                <div class="ribbon"></div>
+                <div id="slider1" class="nivoslider">
+                    <a href="#"><img src="{$wa_theme_url}img/header_01.jpg" alt="" title="This is an example of a caption<br>This is the second caption line"></a>
+                    <a href="#"><img src="{$wa_theme_url}img/header_02.jpg" alt="" title=""></a>
+                    <img src="{$wa_theme_url}img/header_03.jpg" alt="" title="Another caption example">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
