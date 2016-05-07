@@ -13,17 +13,4 @@
 
 <hr>
 
-<div class="row">
-    <div class="col-xs-12">
-
-        <!-- START CONTENT ITEM -->
-        <div class="product-list-inline-large">
-            {include file="`$wa_active_theme_path`/_item.html" inline}
-            {include file="`$wa_active_theme_path`/_item.html" inline}
-            {include file="`$wa_active_theme_path`/_item.html" inline}
-            {include file="`$wa_active_theme_path`/_item.html" inline}
-        </div>
-        <!-- END CONTENT ITEM -->
-
-    </div>
-</div>
+{shopCategoriesPlugin::GetCategories()}

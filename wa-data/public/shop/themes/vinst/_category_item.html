@@ -1,0 +1,11 @@
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <div class="thumbnail dark">
+        <a href="{$category.ex_product.frontend_url}">
+            {$wa->shop->productImgHtml($category.ex_product, '235x235', ['alt' => $category.ex_product, 'default' => "`$wa_theme_url`img/no-image.png"])}
+        </a>
+        <div class="caption">
+            <a href="{$category.ex_product.frontend_url}">{$category.ex_product.name}</a>
+        </div>
+        <a href="products.html" class="btn btn-default btn-block">{$category.name}</a>
+    </div>
+</div>
