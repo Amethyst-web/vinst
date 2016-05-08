@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-xs-12">
+        <!-- START CONTENT ITEM -->
+        <div class="product-list-inline-large category-list">
+            {foreach $categories as $cat}
+                {if $cat.ex_product}
+                    {include file="`$wa_active_theme_path`/_category_item.html" category=$cat inline}
+                {/if}
+            {/foreach}
+        </div>
+        <!-- END CONTENT ITEM -->
+
+    </div>
+</div>

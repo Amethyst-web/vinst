@@ -19,7 +19,7 @@ return array (
       'og_type' => '',
       'url_type' => '0',
       'type_id' => '0',
-      'currency' => 'USD',
+      'currency' => 'RUB',
       'drop_out_of_stock' => '0',
       'payment_id' => '0',
       'shipping_id' => '0',

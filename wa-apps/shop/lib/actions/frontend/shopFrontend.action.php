@@ -67,6 +67,7 @@ class shopFrontendAction extends waViewAction
 
     public function execute()
     {
+        $this->view->assign('slider', true);
         if (wa()->getRouting()->getCurrentUrl()) {
             throw new waException('Page not found', 404);
         }

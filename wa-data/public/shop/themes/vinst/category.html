@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+        <br>
+        <!-- START CONTENT ITEM -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="well well-small">
+                    <ul class="nav nav-list">
+                        {shopCategoryListPlugin::getCategories()}
+                        <hr>
+                        <li class="nav-header">Price</li>
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-ok"></span> &euro; 10 - &euro; 50</a></li>
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-ok"></span> &euro; 50 - &euro; 100</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> &euro; 100 - &euro; 250</a></li>
+                        <hr>
+                        <li class="nav-header">Color</li>
+                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Orange</a></li>
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-ok"></span> Red</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Yellow</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT ITEM -->
+    </div>
+
+    <div class="col-xs-12 col-sm-9">
+
+        <!-- START CONTENT ITEM -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-9">
+                {if isset($category.id)}
+                    <h2>{$category.name|escape}</h2>
+                {else}
+                    <h2>[`Каталог`]</h2>
+                {/if}
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                {include file="`$wa_active_theme_path`/_share_block.html" inline}
+            </div>
+        </div>
+        <!-- END CONTENT ITEM -->
+        {* @event frontend_category.%plugin_id% *}
+        {foreach $frontend_category as $_}{$_}{/foreach}
+
+        <!-- START CONTENT ITEM -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row product-list-inline-small">
+                    {if !$products}
+                        {if !empty($filters)}
+                            [`Продукция не найдена.`]
+                        {else}
+                            [`В этой категории нет продукции.`]
+                        {/if}
+                    {else}
+                        {foreach $products as $item}
+                            {include file="`$wa_active_theme_path`/_item.html" item=$item inline}
+                        {/foreach}
+                    {/if}
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT ITEM -->
+
+    </div>
+</div>

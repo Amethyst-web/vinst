@@ -1,0 +1,5 @@
+<li class="nav-header">[`Категории`]</li>
+<input type="hidden" name="category" value="{$category.url}">
+{foreach $categories as $cat}
+    <li {if $category && $category.id == $cat.id}class="active"{/if}><a {if $cat.depth > 0}style="padding-left: {$cat.depth*20}px"{else}class="root-category"{/if} href="/category/{$cat.full_url}">{if $category && $category.id == $cat.id}<span class="glyphicon glyphicon-ok"></span>{/if} {$cat.name}</a></li>
+{/foreach}
