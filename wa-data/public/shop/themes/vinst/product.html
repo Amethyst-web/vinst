@@ -1,0 +1,151 @@
+{$_product = $wa->shop->product($product.id)}
+<div class="row">
+    <div class="col-xs-9">
+        <h2>{$product.name|escape}</h2>
+    </div>
+    <div class="col-xs-3">
+        {include file="`$wa_active_theme_path`/_share_block.html" inline}
+    </div>
+</div>
+<!-- END CONTENT ITEM -->
+
+<div class="row product-detail">
+
+    <div class="col-xs-12 col-sm-5 col-md-4">
+
+        <!-- START CONTENT ITEM -->
+        <a class="product-detail-lightbox colorbox" rel="colorbox1" href="{$wa->shop->productImgUrl($product, '500x0')}" title="{$product.name|escape}"><img class="product-image img-responsive" alt="Product A" src="{$wa->shop->productImgUrl($product, '500x0')}"></a>
+        <!-- END CONTENT ITEM -->
+
+    </div>
+
+    <div class="hidden-xs col-sm-2 col-md-1">
+
+        <!-- START CONTENT ITEM -->
+        <div class="row">
+            {foreach $_product.images as $key => $image}
+                {$_product.image_id = $image.id}
+                {$_product.ext = $image.ext}
+                <div class="col-xs-12">
+                    <a rel="colorbox1" href="{$wa->shop->productImgUrl($_product, '500x0')}" class="colorbox thumbnail">
+                        {$wa->shop->productImgHtml($_product, '58x0', [ 'itemprop' => 'image', 'class' => 'img-responsive', 'id' => 'product-image-{$_product.image_id}', 'alt' => $_product.name|escape ])}
+                    </a>
+                </div>
+            {/foreach}
+        </div>
+        <!-- END CONTENT ITEM -->
+
+    </div>
+
+    <div class="col-xs-12 col-sm-5 col-md-7">
+
+        <!-- START CONTENT ITEM -->
+        <div class="well">
+            <div class="row">
+                {if !empty($product.features)}
+                <div class="col-xs-6 col-sm-5 col-md-7">
+                    {foreach $product.features as $feat_key => $feat}
+                        <strong>{$features[$feat_key].name}:</strong>
+                        <span id="feature_{$features[$feat_key].id}">
+                            {if $features[$feat_key].multiple == 1}
+                                {if count($product.sku_features) === 0}
+                                    {$featAr = []}
+                                    {foreach $feat as $f}
+                                        {if isset($f.value)}
+                                            {$featAr[] = $f.value}
+                                        {else}
+                                            {$featAr[] = $f}
+                                        {/if}
+                                    {/foreach}
+                                    {join(', ', $featAr)}
+                                {else}
+                                    {$feat[$product.sku_features[$features[$feat_key].id]]}
+                                {/if}
+                            {else}
+                                {$feat}
+                            {/if}
+                        </span><br>
+                    {/foreach}
+                </div>
+                {/if}
+                <div class="col-xs-6 col-sm-7 col-md-5">
+                    <span class="label label-important price">{$product.skus[$product.sku_id].price|wa_format_amount_currency:'RUB'}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>[`Описание`]</h3>
+                    <p>{$product.description}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="form-horizontal" role="form" action="{$wa->getUrl('/frontendCart/add')}">
+                        {$default_sku_features = $product.sku_features}
+                        {foreach $features_selectable as $f}
+                            <div class="form-group">
+                                {if $f.type == 'color'}
+                                    <div class="col-xs-12 color-selector text-center">
+                                        {foreach $f.values as $v_id => $v}
+                                            {if !isset($default_sku_features[$f.id])}{$default_sku_features[$f.id]=$v_id}{/if}
+                                            <label title="{$v->value}">
+                                                <input type="radio" data-name="{$v->value}" data-feature-id="{$f.id}" data-style="{$v->style}" name="features[{$f.id}]" value="{$v_id}" {if $v_id == ifset($default_sku_features[$f.id])} checked="checked"{/if}>
+                                                <span class="color-preview" style="{$v->style}"></span>
+                                            </label>
+                                        {/foreach}
+                                    </div>
+                                    <input type="hidden" data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]" value="{ifset($default_sku_features[$f.id])}">
+                                {else}
+                                <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="{$f.code}">{$f.name}</label>
+                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+                                    <select data-feature-id="{$f.id}" name="features[{$f.id}]" id="{$f.code}" class="form-control sku-feature">
+                                        {foreach $f.values as $v_id => $v}
+                                        <option value="{$v_id}">{$v->value}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                {/if}
+                            </div>
+                        {/foreach}
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <a class="btn btn-block btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> [`Добавить в корзину`]</a>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT ITEM -->
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <!-- START CONTENT ITEM -->
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li><a href="#tab1" data-toggle="tab">Comparable products</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="row tab-pane active" id="tab1">
+                    <ul class="thumbnails product-list-inline-small">
+                        <li class="col-xs-12 col-sm-3 col-md-2">
+                            <div class="thumbnail">
+                                <a href="detail.html"><img src="img/product_01.jpg" alt=""></a>
+                                <div class="caption">
+                                    <a href="detail.html">Product A</a>
+                                    <p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT ITEM -->
+
+    </div>
+</div>
