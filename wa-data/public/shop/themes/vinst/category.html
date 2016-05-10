@@ -5,19 +5,8 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="well well-small">
-                    <ul class="nav nav-list">
-                        {shopCategoryListPlugin::getCategories()}
-                        <hr>
-                        <li class="nav-header">Price</li>
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-ok"></span> &euro; 10 - &euro; 50</a></li>
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-ok"></span> &euro; 50 - &euro; 100</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> &euro; 100 - &euro; 250</a></li>
-                        <hr>
-                        <li class="nav-header">Color</li>
-                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Orange</a></li>
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-ok"></span> Red</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Yellow</a></li>
-                    </ul>
+                    {shopCategoryListPlugin::getCategories()}
+                    {shopColorListPlugin::getColors($category.id, $smarty.get.color)}
                 </div>
             </div>
         </div>
@@ -48,11 +37,17 @@
             <div class="col-xs-12">
                 <div class="row product-list-inline-small">
                     {if !$products}
-                        {if !empty($filters)}
-                            [`Продукция не найдена.`]
-                        {else}
-                            [`В этой категории нет продукции.`]
-                        {/if}
+                        <div class="col-xs-12">
+                            {if !empty($filters)}
+                                [`Продукция не найдена.`]
+                            {else}
+                                {if $smarty.get.search}
+                                    [`Поиск не дал результатов.`]
+                                {else}
+                                    [`В этой категории нет продукции.`]
+                                {/if}
+                            {/if}
+                        </div>
                     {else}
                         {foreach $products as $item}
                             {include file="`$wa_active_theme_path`/_item.html" item=$item inline}
@@ -65,3 +60,4 @@
 
     </div>
 </div>
+<script type="text/javascript" src="{$wa_theme_url}js/category.js"></script>

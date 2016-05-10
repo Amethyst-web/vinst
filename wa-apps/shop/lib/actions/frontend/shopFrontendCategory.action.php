@@ -126,10 +126,27 @@ class shopFrontendCategoryAction extends shopFrontendAction
         $this->view->assign('category', $category);
 
         // products
-        if(isset($category['id'])) {
+        if(isset($_GET['search'])){
+            $collection = new shopProductsCollection('search/query=' . $_GET['search']);
+        } elseif(isset($category['id'])) {
             $collection = new shopProductsCollection('category/' . $category['id']);
         } else {
             $collection = new shopProductsCollection('');
+        }
+        $featureModel = new shopFeatureModel();
+        if($brandValue = waRequest::get('brand')) {
+            $brand = $featureModel->query('
+                SELECT fv.id FROM shop_feature f
+                INNER JOIN shop_feature_values_varchar fv ON f.id = fv.feature_id
+                WHERE f.code = \'brand\' AND fv.value = \''.$featureModel->escape($brandValue).'\' LIMIT 1')->fetchAssoc();
+            $_GET['brand'] = $brand['id'];
+        }
+        if($colorValue = waRequest::get('color')) {
+            $color = $featureModel->query('
+                SELECT fv.id FROM shop_feature f
+                INNER JOIN shop_feature_values_color fv ON f.id = fv.feature_id
+                WHERE f.code = \'color\' AND fv.value IN ("'.join('","',$colorValue).'")')->fetchAll('id', true);
+            $_GET['color'] = array_keys($color);
         }
         // filters
 //        if ($category['filter']) {

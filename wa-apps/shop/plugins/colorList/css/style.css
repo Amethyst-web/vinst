@@ -1,0 +1,11 @@
+.color-list label{
+    font-weight: normal;
+}
+.color-list .color-preview{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid;
+}

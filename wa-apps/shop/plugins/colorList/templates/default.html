@@ -1,0 +1,15 @@
+{if !empty($colors)}
+<ul class="nav nav-list color-list">
+    <li class="nav-header">Цвета</li>
+    {foreach $colors as $color}
+        <li {if !empty($selectedColors) && in_array($color.id,$selectedColors)}class="active"{/if}>
+            <label>
+                <input type="checkbox" name="color" value="{$color.name}" {if !empty($selectedColors) && in_array($color.id,$selectedColors)} checked="checked" {/if}>
+                <span class="color-preview" style="background-color: {$color.value}"></span>{$color.name}
+            </label>
+        </li>
+    {/foreach}
+</ul>
+<script type="text/javascript" src="/wa-apps/{$selfInfo.app_id}/plugins/{$selfInfo.id}/js/main.js"></script>
+<link rel="stylesheet" href="/wa-apps/{$selfInfo.app_id}/plugins/{$selfInfo.id}/css/style.css">
+{/if}
