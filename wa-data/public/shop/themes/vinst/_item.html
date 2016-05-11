@@ -1,4 +1,5 @@
-<div class="col-xs-4 col-sm-3">
+{if !$element}{$element = 'div'}{/if}
+<{$element} class="col-xs-4 col-sm-3">
     <div class="thumbnail">
         <a href="{$item.frontend_url}">{$wa->shop->productImgHtml($item, '262x334', ['itemprop' => 'image', 'class'=>'img-responsive', 'alt' => $item.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}</a>
         <div class="caption">
@@ -6,4 +7,4 @@
             <p>&nbsp;<span class="label label-danger price pull-right">{$item.price|wa_format_amount_currency:'RUB'}</span></p>
         </div>
     </div>
-</div>
+</{$element}>

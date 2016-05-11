@@ -92,7 +92,6 @@ class shopFrontendAction extends waViewAction
          * @return array[string]string $return[%plugin_id%] html output for head section
          */
         $this->view->assign('frontend_homepage', wa()->event('frontend_homepage'));
-
         $this->setThemeTemplate('home.html');
 
     }

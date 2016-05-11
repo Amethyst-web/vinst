@@ -41,15 +41,7 @@
                             <li><a href="contact.html"><strong>E-mail</strong>: info@example.com</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="detail.html"><span class="pull-left"><small>5x</small> Product A</span> &nbsp; <small class="pull-right label label-info">&euro; 123,-</small></a></li>
-                            <li><a href="detail.html"><span class="pull-left"><small>1x</small> Product B</span> &nbsp; <small class="pull-right label label-info">&euro; 139,-</small></a></li>
-                            <li class="divider"></li>
-                            <li><a href="order.html">Show all items in shopping cart <i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                        </ul>
-                    </li>
+                    {shopCartminiPlugin::getCart()}
                 </ul>
             </div>
         </nav>

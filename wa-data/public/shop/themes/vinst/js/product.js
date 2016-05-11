@@ -101,12 +101,13 @@ function Product(form, options) {
         var f = $(this);
         f.find('.adding2cart').addClass('icon24 loading').show();
 
-        $.post(f.attr('action') + '?html=1', f.serialize(), function (response) {
+        $.post(f.attr('action') + '?html=1&items=1', f.serialize(), function (response) {
             f.find('.adding2cart').hide();
             if (response.status == 'ok') {
                 $(".cart-total").html(response.data.total);
-                $('.cart-count').html(response.data.count)
-                successNoty('Product successfully added in cart');
+                $('.cart-count').html(response.data.count);
+                $(document).trigger('cartUpdate', response.data);
+                successNoty('Товар успешно добавлен в корзину');
                 //var cart_div = f.closest('.cart');
                 //if( $(window).scrollTop() >= 110 )
                 //    $('#cart').addClass('fixed');

@@ -80,8 +80,8 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-xs-12">
-                    <form class="form-horizontal" role="form" action="{$wa->getUrl('/frontendCart/add')}">
+                <form class="form-horizontal" id="cart-form" role="form" action="{$wa->getUrl('/frontendCart/add')}">
+                    <div class="col-xs-12">
                         {$default_sku_features = $product.sku_features}
                         {foreach $features_selectable as $f}
                             <div class="form-group">
@@ -94,25 +94,26 @@
                                                 <span class="color-preview" style="{$v->style}"></span>
                                             </label>
                                         {/foreach}
+                                        <input type="hidden" data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]" value="{ifset($default_sku_features[$f.id])}">
                                     </div>
-                                    <input type="hidden" data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]" value="{ifset($default_sku_features[$f.id])}">
                                 {else}
-                                <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="{$f.code}">{$f.name}</label>
-                                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
-                                    <select data-feature-id="{$f.id}" name="features[{$f.id}]" id="{$f.code}" class="form-control sku-feature">
-                                        {foreach $f.values as $v_id => $v}
-                                        <option value="{$v_id}">{$v->value}</option>
-                                        {/foreach}
-                                    </select>
-                                </div>
+                                    <label class="col-xs-12 col-sm-3 col-md-3 col-lg-2 control-label" for="{$f.code}">{$f.name}</label>
+                                    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+                                        <select data-feature-id="{$f.id}" name="features[{$f.id}]" id="{$f.code}" class="form-control sku-feature">
+                                            {foreach $f.values as $v_id => $v}
+                                            <option value="{$v_id}">{$v->value}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
                                 {/if}
                             </div>
                         {/foreach}
-                    </form>
-                </div>
-                <div class="col-xs-12">
-                    <a class="btn btn-block btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> [`Добавить в корзину`]</a>
-                </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <input type="hidden" name="product_id" value="{$product.id}">
+                        <button type="submit" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> [`Добавить в корзину`]</button>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- END CONTENT ITEM -->
@@ -121,31 +122,43 @@
 </div>
 
 
+{$crossselling = $product->crossSelling(4)}
+{if $crosselling}
 <div class="row">
     <div class="col-xs-12">
-
         <!-- START CONTENT ITEM -->
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li><a href="#tab1" data-toggle="tab">Comparable products</a></li>
+                <li><a href="#tab1" data-toggle="tab">[`Так же покупают`]</a></li>
             </ul>
             <div class="tab-content">
                 <div class="row tab-pane active" id="tab1">
                     <ul class="thumbnails product-list-inline-small">
-                        <li class="col-xs-12 col-sm-3 col-md-2">
-                            <div class="thumbnail">
-                                <a href="detail.html"><img src="img/product_01.jpg" alt=""></a>
-                                <div class="caption">
-                                    <a href="detail.html">Product A</a>
-                                    <p>Lorem ipsum dolor sit amet <span class="label label-info price pull-right">&euro; 123,-</span></p>
-                                </div>
-                            </div>
-                        </li>
+                        {foreach $crossselling as $item}
+                            {include file="`$wa_active_theme_path`/_item.html" item=$item element='li' inline}
+                        {/foreach}
                     </ul>
                 </div>
             </div>
         </div>
         <!-- END CONTENT ITEM -->
-
     </div>
 </div>
+{/if}
+<script>
+    ( function($) {
+        $.getScript("{$wa_theme_url}js/product.js", function() {
+            if (typeof Product === "function") {
+                new Product('#cart-form{if $wa->get('cart')}-dialog{/if}', {
+                    currency: {json_encode($currency_info)}
+                {if count($product.skus) > 1 or $product.sku_type}
+            ,services: {json_encode($sku_services)}
+                {/if}
+                {if $product.sku_type}
+            ,features: {json_encode($sku_features_selectable)}
+                {/if}
+            });
+            }
+        });
+    })(jQuery);
+</script>
