@@ -28,3 +28,6 @@
 .color-selector label{
     margin-right: 5px;
 }
+.nivo-controlNav, .nivo-directionNav{
+    display: none;
+}
