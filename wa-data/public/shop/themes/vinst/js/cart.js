@@ -1,5 +1,5 @@
 $(function () {
-
+    $('.cart-mini').hide();
     function updateCart(data)
     {
         $(".cart-total").html(data.total);
@@ -23,7 +23,8 @@ $(function () {
         }
     }
 
-    $(".cart a.delete").click(function () {
+    $(".cart .delete").click(function (e) {
+        e.preventDefault();
         var row = $(this).closest('tr.basket-row');
         $.post('delete/', {html: 1, id: row.data('id')}, function (response) {
             if (response.data.count == 0) {
@@ -33,6 +34,13 @@ $(function () {
             updateCart(response.data);
         }, "json");
         return false;
+    });
+    
+    $('.cart .clear-items').click(function(e){
+        e.preventDefault();
+        $.post('delete/', {html: 1, id: 'all'}, function () {
+            location.reload();
+        }, "json");
     });
 
     $(".cart input.qty").change(function () {
@@ -55,7 +63,25 @@ $(function () {
             }
         } else {
             that.val(1);
+            that.change();
         }
+    });
+
+    $('.cart .btn-plus').click(function(){
+        var qtyInput = $(this).parents('.item-qty').find('input.qty');
+        qtyInput.val(parseInt(qtyInput.val()) + 1);
+        qtyInput.change();
+    });
+
+    $('.cart .btn-minus').click(function(){
+        var qtyInput = $(this).parents('.item-qty').find('input.qty');
+        var value = qtyInput.val();
+        if(value > 1) {
+            qtyInput.val(parseInt(qtyInput.val()) - 1);
+        } else {
+            qtyInput.val(1);
+        }
+        qtyInput.change();
     });
 
     $(".cart .services input:checkbox").change(function () {
@@ -71,7 +97,7 @@ $(function () {
         var div = $(this).closest('div');
         var row = $(this).closest('tr.basket-row');
         if ($(this).is(':checked')) {
-           var parent_id = row.data('id')
+           var parent_id = row.data('id');
            var data = {html: 1, parent_id: parent_id, service_id: $(this).val()};
            var variants = $('select[name="service_variant[' + parent_id + '][' + $(this).val() + ']"]');
            if (variants.length) {

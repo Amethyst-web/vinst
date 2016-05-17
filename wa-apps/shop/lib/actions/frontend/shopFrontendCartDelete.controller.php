@@ -9,11 +9,15 @@ class shopFrontendCartDeleteController extends waJsonController
 
         $is_html = waRequest::request('html');
 
-        if ($id) {
+        if ($id && $id != 'all') {
             $item = $cart->deleteItem($id);
             if ($item && !empty($item['parent_id'])) {
                 $item_total = $cart->getItemTotal($item['parent_id']);
                 $this->response['item_total'] = $is_html ? shop_currency_html($item_total, true) : shop_currency($item_total, true);
+            }
+        } elseif($id == 'all') {
+            foreach ($cart->items() as $item){
+                $cart->deleteItem($item['id']);
             }
         }
         $total = $cart->total();

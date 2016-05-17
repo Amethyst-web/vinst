@@ -1,0 +1,93 @@
+<script type="text/javascript" src="{$wa_theme_url}js/cart.js"></script>
+<div class="row cart">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>[`Корзина`]</h2>
+            </div>
+        </div>
+        {if !$cart.count}
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h4>[`Корзина пуста`]</h4>
+                <a href="/category/" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> [`Продолжить покупки`]</a>
+            </div>
+        </div>
+        {else}
+        <form method="post">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-bordered table-order">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs">&nbsp;</th>
+                            <th></th>
+                            <th>[`Количество`]</th>
+                            <th>[`Цена за ед.`]</th>
+                            <th>[`Итого`]</th>
+                            <td></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach $cart.items as $item}
+                        <tr class="basket-row" data-id="{$item.id}">
+                            <td class="hidden-xs item-thumb"><a href="{$wa->shop->productUrl($item.product)}"><img src="{$wa->shop->productImgUrl($item.product, '75x75')}" width="75" alt="{if $item.sku_name && $item.sku_name != $item.product.name}{$item.sku_name|escape}{else}{$item.product.name|escape}{/if}"></a></td>
+                            <td class="item-name">
+                                <a href="{$wa->shop->productUrl($item.product)}">{if $item.sku_name && $item.sku_name != $item.product.name}{$item.sku_name|escape}{else}{$item.product.name|escape}{/if}</a>
+                            </td>
+                            <td>
+                                <div class="input-group item-qty">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default btn-minus" type="button">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" pattern="[0-9]*" name="quantity[{$item.id}]" class="form-control qty{if !empty($item.error)} error{/if}" value="{$item.quantity}">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default btn-plus" type="button">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </td>
+                            <td align="right">
+                                <span>{shop_currency_html($item.price, true)}</span>
+                            </td>
+                            <td align="right">
+                                <span class="item-total">{shop_currency_html($item.full_price, true)}</span>
+                            </td>
+                            <td class="item-remove">
+                                <button type="button" class="btn btn-danger delete btn-sm" title="[`Удалить из корзины`]"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        <tr>
+                            <td align="right" colspan="3">[`Итого`]: </td>
+                            <td align="right" colspan="2">
+                                <strong class="cart-total">{shop_currency_html($cart.total, true)}</strong>
+                            </td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <a href="/category/" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> [`Продолжить покупки`]</a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <button class="btn btn-default clear-items" type="button"><span class="glyphicon glyphicon-trash"></span> [`Очистить корзину`]</button>
+                </div>
+                <div class="col-xs-4">
+                    <input type="hidden" name="checkout" value="1">
+                    <button class="btn btn-primary pull-right" type="submit">[`Оформить заказ`] <span class="glyphicon glyphicon-chevron-right"></span></button>
+                </div>
+            </div>
+        </form>
+        {* @event frontend_cart.%plugin_id% *}
+        {foreach $frontend_cart as $_}{$_}{/foreach}
+        {/if}
+    </div>
+</div>
+<br>
