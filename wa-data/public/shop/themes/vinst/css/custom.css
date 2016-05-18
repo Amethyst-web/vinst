@@ -4,7 +4,7 @@ html, body{
 .container{
     min-height: 100%;
     position: relative;
-    padding-bottom: 120px;
+    padding-bottom: 140px;
 }
 .container footer{
     position: absolute;
@@ -43,4 +43,17 @@ html, body{
 }
 .nivo-controlNav, .nivo-directionNav{
     display: none;
+}
+.shipping-method{
+    margin-bottom: 30px;
+}
+.shipping-method legend{
+    padding-left: 5px;
+}
+.shipping-method input[type=radio]{
+    margin-right: 15px;
+}
+.shipping-method .description{
+    padding-left: 5px;
+    padding-right: 5px;
 }

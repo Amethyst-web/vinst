@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>[`Оформление заказа`]</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <form method="post" class="checkout-step step-{$checkout_current_step}">
+                    <!-- START CONTENT ITEM -->
+                    <ul class="nav nav-tabs">
+                        {$step_num = 1}
+                        {foreach $checkout_steps as $step_id => $s}
+                            <li {if $checkout_current_step == $step_id}class="active"{/if} data-step="{$step_id}"><a href=""><b>Шаг {$step_num}:</b> {$s.name}</a></li>
+                            {$step_num = $step_num + 1}
+                        {/foreach}
+                    </ul>
+
+                    <div class="tab-content">
+                        {if in_array($step_id,['contactinfo', 'shipping', 'payment', 'confirmation'])}
+                            {include file="checkout.`$checkout_current_step`.html"}
+                        {else}
+                            {$checkout_steps[$checkout_current_step].content}
+                        {/if}
+                        <hr>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                {if reset($checkout_steps) != $checkout_steps[$checkout_current_step]}
+                                    <a href="#" class="btn btn-default back hint"><span class="glyphicon glyphicon-chevron-left"></span> [`Назад`]</a>
+                                {else}
+                                    <a href="/cart/" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> [`В корзину`]</a>
+                                {/if}
+                            </div>
+                            <div class="col-xs-offset-4 col-xs-4">
+                                <input type="hidden" name="step" value="{$checkout_current_step}">
+                                <button class="btn btn-primary pull-right" type="submit">{if end($checkout_steps) == $checkout_steps[$checkout_current_step]}[`Оформить заказ`]{else}[`Дальше`]{/if} <span class="glyphicon glyphicon-chevron-right"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
