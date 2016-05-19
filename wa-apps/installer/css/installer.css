@@ -225,6 +225,10 @@ ul.thumbs li .i-image-wrapper { position: relative; }
 .i-product-page .i-description ul li { margin-bottom: 1em; }
 .i-product-page .i-page { clear: left; margin-top: 10px; }
 
+.i-product-page table { border-collapse: collapse; }
+.i-product-page table th,
+.i-product-page table td { border: 1px solid silver; padding: 5px; text-align: center; }
+
 .i-changelog h5 { font-size: 1.1em; }
 .i-changelog div { line-height: 1.4em; margin-bottom: 25px; }
 

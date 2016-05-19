@@ -2,7 +2,10 @@
 return array (
   'vinst.ru' => 
   array (
-    0 => 
+  ),
+  'vinst-c.ru' => 
+  array (
+    1 => 
     array (
       'url' => '*',
       'app' => 'shop',
@@ -23,14 +26,6 @@ return array (
       'drop_out_of_stock' => '0',
       'payment_id' => '0',
       'shipping_id' => '0',
-    ),
-    1 => 
-    array (
-      'url' => 'site/*',
-      'app' => 'site',
-      'theme' => 'default',
-      'theme_mobile' => 'default',
-      'locale' => 'ru_RU',
     ),
   ),
 );

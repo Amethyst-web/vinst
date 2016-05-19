@@ -1614,6 +1614,9 @@ class waInstallerApps
             //hack for theme xml
             $path_xml = preg_replace('@\.php$@', '.xml', $_path);
             if (file_exists($path_xml)) {
+                if (!function_exists('simplexml_load_file')) {
+                    throw new Exception('PHP extension SimpleXML required');
+                }
                 if ($xml = @simplexml_load_file($path_xml)) {
 
                     foreach ($ml_fields as $field) {

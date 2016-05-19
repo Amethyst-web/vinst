@@ -1,4 +1,4 @@
-d8bde5c7694d3f25df26e2e3c7f463d5 *css/installer.css
+83fd0950f2793ebcb9495c590b16093f *css/installer.css
 3fc221217901db8689494f1945d99895 *img/arrows-sprite.png
 e1c779c20d799a3734682712c27a5230 *img/dummy-plugin.png
 2b5d724d36487e982367c217e8f9de1e *img/dummy-widget.png
@@ -60,8 +60,8 @@ e4acebaab0576c1d72810f77bdff5dc2 *lib/classes/installerItemsAction.class.php
 0d14283b65ffbc14be3e0b626b4eabb8 *lib/classes/installerMessage.class.php
 0817e2ed5f4d448099be3070b4610c06 *lib/cli/installerApps.cli.php
 5a7b0c0f3947b12d3d58164acc791571 *lib/cli/installerHash.cli.php
-b52ea26702df85c7ffb62c8d07c4bfba *lib/config/app.php
-7545dcfc4e0be9263654554577f3051e *lib/config/build.php
+8ae3b38f4689b539284e4bd0c5a29177 *lib/config/app.php
+551a9efd6f98cf7c46ef906ec8dc4703 *lib/config/build.php
 8cc86b01bb04d4bc733898ede749a442 *lib/config/factories.php
 c084e94f354214ccf07237d5ae5a5c83 *lib/config/installerConfig.class.php
 37bf15a645503fe87bb6dab90a5779e2 *lib/config/requirements.php
@@ -79,7 +79,7 @@ f5f22410b538cdaf0f5cb1d4530477c5 *templates/actions/assets/Assets.html
 21f2c989a3fbd8c8ac27d2b4f73626ea *templates/actions/assets/Assets.row.html
 563de884b5eb0381bc1957dadc37c54d *templates/actions/backend/BackendDefault.html
 304ebfac999ea973e999ab894da0f595 *templates/actions/featured/Featured.html
-c3282ceb8ac8e0214a59cda169de4ddd *templates/actions/plugins/Plugins.html
+73ed169e93f6b2144501e1361ec1a539 *templates/actions/plugins/Plugins.html
 d718b1fc4bfa73c74b675edb830e86ef *templates/actions/plugins/Plugins.include.html
 c8a59cbeab357a4801fea9b95418bd2f *templates/actions/plugins/PluginsInfo.html
 93c4b49935a4d2ccc86afbb05f383840 *templates/actions/plugins/PluginsView.html
@@ -88,7 +88,7 @@ c36bfeac66c98b97c4050f8314e5d384 *templates/actions/themes/Themes.html
 2a4bf1685cff96607bd87830036abf74 *templates/actions/themes/Themes.include.html
 2c3af07d3a19aa77ee633bcb0e789c16 *templates/actions/themes/ThemesInfo.html
 f30221e4c437c6a0742d957966db67ef *templates/actions/themes/ThemesView.html
-d5ac518d0fb7d01b2995ea041d09ecce *templates/actions/update/Update.html
+7b23be38ca80521d931631d2e07a38bc *templates/actions/update/Update.html
 9b77cb1b12d49b8245a3d8948d4ec743 *templates/actions/update/Update.row.html
 f5f363a70d9e82eb4765c0e4c09a2e8c *templates/actions/update/UpdateManager.html
 8f9ba726ad3c8396a0a44e8024e96875 *templates/actions/widgets/Widgets.html

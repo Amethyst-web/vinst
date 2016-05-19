@@ -18,6 +18,7 @@ header('Connection: close');
 
 if (version_compare('5.2.5', PHP_VERSION, '>')) {
     print sprintf("PHP version 5.2.5 or greater required, but current is %s", PHP_VERSION);
+    exit;
 }
 
 @ini_set("magic_quotes_runtime", 0);
