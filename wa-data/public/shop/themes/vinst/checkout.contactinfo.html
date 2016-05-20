@@ -1,5 +1,101 @@
-<div class="row">
-    <div class="col-xs-12">
-        {$checkout_contact_form->html()}
+<div class="row checkout-content" data-step-id="contactinfo">
+    <div class="col-xs-12 col-sm-6 well">
+        <fieldset>
+            <legend>Личная информация</legend>
+            <div class="form-group wa-field wa-field-email wa-required {if $checkout_contact_form->errors.email}has-error{/if}">
+                <label class="col-xs-4 control-label wa-name" for="email">[`E-mail`]</label>
+                <div class="col-xs-8 wa-value">
+                    <input class="form-control" id="email" name="customer[email]" type="email" placeholder="email@example.ru" value="{$checkout_contact_form->values.email[0].value}">
+                    {if $checkout_contact_form->errors.email}<span class="help-block">{$checkout_contact_form->errors.email[0]}</span>{/if}
+                </div>
+            </div>
+            <div class="form-group wa-field wa-field-phone wa-required {if $checkout_contact_form->errors.phone}has-error{/if}">
+                <label class="col-xs-4 control-label wa-name" for="email">[`Телефон`]</label>
+                <div class="col-xs-8 wa-value">
+                    <input class="form-control" id="phone" name="customer[phone]" type="tel" placeholder="+79123456789" value="{$checkout_contact_form->values.phone[0].value}">
+                    {if $checkout_contact_form->errors.email}<span class="help-block">{$checkout_contact_form->errors.email[0]}</span>{/if}
+                </div>
+            </div>
+            <div class="form-group wa-field wa-field-vy wa-required {if $checkout_contact_form->errors.vy}has-error{/if}">
+                <label class="col-xs-4 control-label wa-name">[`Вы`]</label>
+                <div class="col-xs-8 wa-value">
+                    <label><input name="customer[vy]" data-who="fiz" type="radio" value="[`Физическое лицо`]" checked="checked"> [`Физическое лицо`]</label>
+                    <label><input name="customer[vy]" data-who="ur" type="radio" value="[`Юридическое лицо`]"> [`Юридическое лицо`]</label>
+                </div>
+            </div>
+            <div id="fiz" class="who">
+                <div class="form-group wa-field wa-field-name wa-required {if $checkout_contact_form->errors.firstname}has-error{/if}">
+                    <label class="col-xs-4 control-label wa-name" for="firstname">[`Имя`]</label>
+                    <div class="col-xs-8 wa-value">
+                        <input class="form-control" id="firstname" name="customer[firstname]" type="tel" placeholder="[`Имя`]" value="{$checkout_contact_form->values.firstname}">
+                        {if $checkout_contact_form->errors.firstname}<span class="help-block">{$checkout_contact_form->errors.firstname[0]}</span>{/if}
+                    </div>
+                </div>
+                <div class="form-group wa-field wa-field-name wa-required {if $checkout_contact_form->errors.lastname}has-error{/if}">
+                    <label class="col-xs-4 control-label wa-name" for="lastname">[`Фамилия`]</label>
+                    <div class="col-xs-8 wa-value">
+                        <input class="form-control" id="lastname" name="customer[lastname]" type="tel" placeholder="[`Фамилия`]" value="{$checkout_contact_form->values.lastname}">
+                        {if $checkout_contact_form->errors.lastname}<span class="help-block">{$checkout_contact_form->errors.lastname[0]}</span>{/if}
+                    </div>
+                </div>
+            </div>
+            <div id="ur" class="who" style="display: none;">
+                <div class="form-group wa-field wa-field-name wa-required {if $checkout_contact_form->errors.company}has-error{/if}">
+                    <label class="col-xs-4 control-label wa-name" for="company">[`Компания`]</label>
+                    <div class="col-xs-8 wa-value">
+                        <input class="form-control" id="company" name="customer[company]" type="tel" placeholder="[`Компания`]" value="{$checkout_contact_form->values.company}">
+                        {if $checkout_contact_form->errors.company}<span class="help-block">{$checkout_contact_form->errors.company[0]}</span>{/if}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
     </div>
+    <div class="col-xs-12 col-sm-6">
+        <fieldset>
+            <legend>Адрес доставки</legend>
+            <div class="form-group wa-required field wa-field-address-country">
+                <label class="col-xs-4 control-label" for="Country">[`Страна`]</label>
+                <div class="col-xs-8">
+                    <select class="form-control" id="Country" name="customer[address.shipping][country]">
+                        {foreach $countries as $c}
+                            <option value="{$c.iso3letter}" {if $c.iso3letter == $checkout_contact_form->values['address.shipping'][0].data.country}selected{/if}>{$c.name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group wa-required field wa-field-address-city {if $checkout_contact_form->errors['address.shipping'][0].city}has-error{/if}">
+                <label class="col-xs-4 control-label" for="City">[`Город`]</label>
+                <div class="col-xs-8">
+                    <input class="form-control" name="customer[address.shipping][city]" id="City" type="text" placeholder="[`Город`]">
+                    {if $checkout_contact_form->errors['address.shipping'][0].city}<span class="help-block">{$checkout_contact_form->errors['address.shipping'][0].city}</span>{/if}
+                </div>
+            </div>
+            <div class="form-group wa-required field wa-field-address-street {if $checkout_contact_form->errors['address.shipping'][0].street}has-error{/if}">
+                <label class="col-xs-4 control-label" for="Address">[`Адрес`]</label>
+                <div class="col-xs-8">
+                    <input class="form-control" name="customer[address.shipping][street]" id="Address" type="text" placeholder="[`Адрес`]">
+                    {if $checkout_contact_form->errors['address.shipping'][0].street}<span class="help-block">{$checkout_contact_form->errors['address.shipping'][0].street}</span>{/if}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    {if !empty($errors.all)}
+        <p class="error">{$errors.all}</p>
+    {/if}
+
+    <!-- plugin hook: 'frontend_checkout' -->
+    {* @event frontend_checkout.%plugin_id% *}
+    {foreach $frontend_checkout as $_}{$_}{/foreach}
+
+    {if !empty($error)}
+        <div class="checkout-result error">{$error}</div>
+    {/if}
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('[name="customer[vy]"]').change(function(){
+            $('.who').hide();
+            $('.who#'+$(this).data('who')).show();
+        });
+    });
+</script>

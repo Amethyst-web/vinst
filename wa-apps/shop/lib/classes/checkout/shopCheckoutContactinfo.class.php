@@ -15,6 +15,8 @@ class shopCheckoutContactinfo extends shopCheckout
         }
 
         $contact = $this->getContact();
+        $countriesModel = new waCountryModel();
+        $countries = $countriesModel->all(0,false,'ru_RU');
         if ($contact) {
             $this->form->setValue($contact);
 
@@ -38,6 +40,7 @@ class shopCheckoutContactinfo extends shopCheckout
 
         $view = wa()->getView();
         $view->assign('checkout_contact_form', $this->form);
+        $view->assign('countries', $countries);
         $view->assign('billing_matches_shipping', $billing_matches_shipping);
         $view->assign('customer', $contact ? $contact : new waContact());
         if (!$view->getVars('error')) {

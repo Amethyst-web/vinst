@@ -86,7 +86,7 @@ return array (
   'vy' => 
   array (
     'allow_self_edit' => NULL,
-    'required' => '',
+    'required' => '1',
     'unique' => NULL,
   ),
 );

@@ -10,16 +10,6 @@ return array (
     'name' => 'Контактная информация',
     'fields' => 
     array (
-      'firstname' => 
-      array (
-        'localized_names' => 'Имя',
-        'required' => '',
-      ),
-      'lastname' => 
-      array (
-        'localized_names' => 'Фамилия',
-        'required' => '',
-      ),
       'phone' => 
       array (
         'localized_names' => 'Телефон',
@@ -30,13 +20,23 @@ return array (
         'localized_names' => 'Email',
         'required' => '1',
       ),
+      'vy' => 
+      array (
+        'required' => '1',
+      ),
+      'firstname' => 
+      array (
+        'localized_names' => 'Имя',
+        'required' => '',
+      ),
+      'lastname' => 
+      array (
+        'localized_names' => 'Фамилия',
+        'required' => '',
+      ),
       'company' => 
       array (
         'localized_names' => 'Компания',
-        'required' => '',
-      ),
-      'vy' => 
-      array (
         'required' => '',
       ),
       'address' => 
@@ -54,16 +54,6 @@ return array (
             'localized_names' => 'Город',
             'required' => '',
           ),
-          'region' => 
-          array (
-            'localized_names' => 'Регион',
-            'required' => '',
-          ),
-          'zip' => 
-          array (
-            'localized_names' => 'Индекс',
-            'required' => '',
-          ),
           'country' => 
           array (
             'localized_names' => 'Страна',
@@ -73,7 +63,7 @@ return array (
       ),
       'address.shipping' => 
       array (
-        'localized_names' => 'Адрес',
+        'localized_names' => 'Адрес доставки',
         'fields' => 
         array (
           'street' => 
@@ -84,16 +74,6 @@ return array (
           'city' => 
           array (
             'localized_names' => 'Город',
-            'required' => '',
-          ),
-          'region' => 
-          array (
-            'localized_names' => 'Регион',
-            'required' => '',
-          ),
-          'zip' => 
-          array (
-            'localized_names' => 'Индекс',
             'required' => '',
           ),
           'country' => 
