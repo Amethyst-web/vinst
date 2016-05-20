@@ -47,17 +47,17 @@ return array (
           'street' => 
           array (
             'localized_names' => 'Улица, дом, квартира',
-            'required' => '',
+            'required' => '1',
           ),
           'city' => 
           array (
             'localized_names' => 'Город',
-            'required' => '',
+            'required' => '1',
           ),
           'country' => 
           array (
             'localized_names' => 'Страна',
-            'required' => '',
+            'required' => '1',
           ),
         ),
       ),
@@ -69,17 +69,17 @@ return array (
           'street' => 
           array (
             'localized_names' => 'Улица, дом, квартира',
-            'required' => '',
+            'required' => '1',
           ),
           'city' => 
           array (
             'localized_names' => 'Город',
-            'required' => '',
+            'required' => '1',
           ),
           'country' => 
           array (
             'localized_names' => 'Страна',
-            'required' => '',
+            'required' => '1',
           ),
         ),
       ),
