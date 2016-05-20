@@ -16,17 +16,14 @@ class shopCategoryListPlugin extends shopPlugin{
      * Возвращает html-код категорий
      * @return mixed|string
      */
-//    PHP7
-//    public static function getCategories(): string {
     public static function getCategories() {
         $settings = (new self(static::$selfInfo))->getSettings();
         if(!$settings['active']){
             return '';
         }
-        $categoryModel = new shopCategoryModel();
-        $categories = $categoryModel->query('SELECT id, url, full_url, name, parent_id, count, depth FROM '.$categoryModel->getTableName().' WHERE status = 1');
+        $categories = new shopCategories();
         $view = wa()->getView();
-        $view->assign('categories', $categories);
-        return $view->fetch('wa-apps/'.static::$selfInfo['app_id'].'/plugins/'.static::$selfInfo['id'].'/templates/default.html');
+        $view->assign('categories', $categories->getList());
+        return $view->fetch(static::getPluginTemplatePath());
     }
 }

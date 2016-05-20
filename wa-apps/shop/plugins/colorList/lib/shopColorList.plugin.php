@@ -18,8 +18,6 @@ class shopColorListPlugin extends shopPlugin{
      * @param array $selectedColors
      * @return mixed|string
      */
-//    PHP7
-//    public static function getColors(int $categoryId = null, array $selectedColors = null): string {
     public static function getColors($categoryId = null, array $selectedColors = null){
         $plugin = new self(static::$selfInfo);
         $settings = $plugin->getSettings();
@@ -37,7 +35,7 @@ class shopColorListPlugin extends shopPlugin{
             INNER JOIN '.(new shopFeatureValuesColorModel())->getTableName().' fv ON f.id = fv.feature_id
             INNER JOIN '.(new shopProductFeaturesModel())->getTableName().' pf ON pf.feature_value_id = fv.id AND f.id = pf.feature_id
             INNER JOIN '.(new shopProductModel())->getTableName().' p ON p.id = pf.product_id
-            WHERE pf.sku_id IS NULL'.$innerFilter.' AND f.code = \'color\' GROUP BY fv.value, fv.code, fv.id')->fetchAll();
+            WHERE f.code = \'color\''.$innerFilter.' GROUP BY fv.value, fv.code, fv.id')->fetchAll();
         $colorParser = new shopColorValue([]);
         foreach($colors as $key => $color){
             $colors[$key]['value'] = $colorParser->convert('hex', $color['code']);
