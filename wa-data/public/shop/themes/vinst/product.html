@@ -14,24 +14,35 @@
     <div class="col-xs-12 col-sm-5 col-md-4">
 
         <!-- START CONTENT ITEM -->
-        <a class="product-detail-lightbox colorbox" rel="colorbox1" href="{$wa->shop->productImgUrl($product, '500x0')}" title="{$product.name|escape}"><img class="product-image img-responsive" alt="Product A" src="{$wa->shop->productImgUrl($product, '500x0')}"></a>
+        <a class="product-detail-lightbox colorbox" rel="colorbox1" href="{$wa->shop->productImgUrl($product, '500x0')}" title="{$product.name|escape}"><img class="product-image img-responsive" alt="{$_product.name|escape}" src="{$wa->shop->productImgUrl($product, '500x0')}"></a>
         <!-- END CONTENT ITEM -->
 
     </div>
 
-    <div class="hidden-xs col-sm-2 col-md-1">
+    <div class="hidden-xs col-sm-2 col-md-1 container">
 
         <!-- START CONTENT ITEM -->
-        <div class="row">
-            {foreach $_product.images as $key => $image}
-                {$_product.image_id = $image.id}
-                {$_product.ext = $image.ext}
-                <div class="col-xs-12">
-                    <a rel="colorbox1" href="{$wa->shop->productImgUrl($_product, '500x0')}" class="colorbox thumbnail">
-                        {$wa->shop->productImgHtml($_product, '58x0', [ 'itemprop' => 'image', 'class' => 'img-responsive', 'id' => 'product-image-{$_product.image_id}', 'alt' => $_product.name|escape ])}
-                    </a>
-                </div>
-            {/foreach}
+        {$carouselCount = 4}
+        <div class="row carousel vertical slide text-center" data-visible="{$carouselCount}">
+            {if count($_product.images) - 1 > $carouselCount}
+                <div class="slider-up"></div>
+            {/if}
+            <div class="carousel-inner" role="listbox">
+                {foreach $_product.images as $key => $image}
+                    {if $product.image_id != $image.id}
+                        {$_product.image_id = $image.id}
+                        {$_product.ext = $image.ext}
+                        <div class="item active">
+                            <a rel="colorbox1" href="{$wa->shop->productImgUrl($_product, '500x0')}" class="colorbox thumbnail">
+                                {$wa->shop->productImgHtml($_product, '58x0', [ 'itemprop' => 'image', 'class' => 'img-responsive', 'id' => 'product-image-'|cat:$_product.image_id, 'alt' => $_product.name|escape ])}
+                            </a>
+                        </div>
+                    {/if}
+                {/foreach}
+            </div>
+            {if count($_product.images) - 1 > $carouselCount}
+            <div class="slider-down"></div>
+            {/if}
         </div>
         <!-- END CONTENT ITEM -->
 
@@ -145,6 +156,7 @@
     </div>
 </div>
 {/if}
+<script type="text/javascript" src="{$wa_theme_url}js/carousel.js"></script>
 <script>
     ( function($) {
         $.getScript("{$wa_theme_url}js/product.js", function() {

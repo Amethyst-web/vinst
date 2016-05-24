@@ -23,6 +23,15 @@ html, body{
 .category-list img{
     background-color: white;
 }
+.category-list a{
+    white-space: normal;
+    height: 53px;
+}
+.thumbnail .caption a{
+    display: inline-block;
+    height: 63px;
+    overflow: hidden;
+}
 .root-category{
     font-weight: bold;
 }
@@ -103,4 +112,25 @@ html, body{
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+}
+
+.carousel-inner{
+    padding-top: 10px;
+}
+.carousel-inner .item{
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.slider-up, .slider-down{
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+.slider-up{
+    background: url('../img/up.png');
+}
+.slider-down{
+    background: url('../img/down.png');
 }

@@ -3,7 +3,8 @@
     <input type="hidden" name="category" value="{$category.url}">
     {foreach $categories as $cat}
         {if $cat.total_count > 0 || $cat.count > 0}
-            <li {if $category && $category.id == $cat.id}class="active"{/if}><a {if $cat.depth > 0}style="padding-left: {$cat.depth*20}px"{else}class="root-category"{/if} href="/category/{$cat.full_url}">{if $category && $category.id == $cat.id}<span class="glyphicon glyphicon-ok"></span>{/if} {$cat.name}</a></li>
+            {$cat=$wa->shop->category($cat.id)}
+            <li {if $category && $category.id == $cat.id}class="active"{/if}><a {if $cat.depth > 0}style="padding-left: {$cat.depth*20}px"{else}class="root-category"{/if} href="{$wa->shop->categoryUrl($cat)}">{if $category && $category.id == $cat.id}<span class="glyphicon glyphicon-ok"></span>{/if} {$cat.name}</a></li>
         {/if}
     {/foreach}
 </ul>
