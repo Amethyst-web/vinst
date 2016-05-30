@@ -1,0 +1,22 @@
+<li class="dropdown cart-mini">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+    <ul class="dropdown-menu">
+        {foreach $cart.items as $item}
+            <li class="cart-item">
+                <a href="{$wa->shop->productUrl($item.product)}">
+                    <span class="pull-left">
+                        <small>{$item.quantity}x</small> {if $item.sku_name && $item.sku_name != "" && $item.sku_name != $item.product.name}{$item.sku_name|escape}{else}{$item.product.name|escape}{/if}
+                    </span>
+                    &nbsp;
+                    <small class="pull-right label label-info">{shop_currency_html($item.full_price, true)}</small>
+                </a>
+            </li>
+        {foreachelse}
+            <li class="empty">[`В корзине пока нет ни одного товара`]</li>
+        {/foreach}
+        <li class="divider"></li>
+        <li><a href="/cart" class="in-cart">[`В корзину`] <i class="glyphicon glyphicon-chevron-right"></i></a></li>
+    </ul>
+</li>
+<script type="text/javascript" src="/wa-apps/{$selfInfo.app_id}/plugins/{$selfInfo.id}/js/main.js"></script>
+<link rel="stylesheet" href="/wa-apps/{$selfInfo.app_id}/plugins/{$selfInfo.id}/css/style.css">
