@@ -134,3 +134,6 @@ html, body{
 .slider-down{
     background: url('../img/down.png');
 }
+.catalog-item{
+    margin-bottom: 20px;
+}

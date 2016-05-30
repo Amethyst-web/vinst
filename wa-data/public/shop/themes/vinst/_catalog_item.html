@@ -1,0 +1,21 @@
+{capture}
+{$arts = array()}
+{foreach $skus as $sku}
+    {$arts[] = $sku.sku}
+{/foreach}
+{sort($arts)}
+{/capture}
+<div class="row catalog-item">
+    <div class="col-xs-2">
+        <a href="{$item.frontend_url}">{$wa->shop->productImgHtml($item, '262x262', ['itemprop' => 'image', 'class'=>'img-responsive', 'alt' => $item.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}</a>
+    </div>
+    <div class="col-xs-8">
+        <div class="caption">
+            <a href="{$item.frontend_url}">{$item.name|escape}</a>
+            <p>[`Артикулы`]: {join(', ', $arts)}</p>
+        </div>
+    </div>
+    <div class="col-xs-2">
+        <p>&nbsp;<span class="label label-danger price pull-right">{$item.price|wa_format_amount_currency:'RUB'}</span></p>
+    </div>
+</div>

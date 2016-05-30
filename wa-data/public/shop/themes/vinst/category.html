@@ -49,8 +49,9 @@
                             {/if}
                         </div>
                     {else}
+                        {$all_skus = $wa->shop->skus(array_keys($products))}
                         {foreach $products as $item}
-                            {include file="`$wa_active_theme_path`/_item.html" item=$item inline}
+                            {include file="`$wa_active_theme_path`/_catalog_item.html" item=$item inline skus=$all_skus[$item.id]}
                         {/foreach}
                     {/if}
                 </div>
