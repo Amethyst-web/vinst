@@ -1,0 +1,458 @@
+<script type="text/javascript" src="//api-maps.yandex.ru/2.1/?lang={$wa->locale()}"></script>
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-wa/wa.dialog.js"></script>
+
+
+<script src="{$wa_url}wa-content/js/codemirror/lib/codemirror.js"></script>
+<link href="{$wa_url}wa-content/js/codemirror/lib/codemirror.css" type="text/css" rel="stylesheet">
+
+
+<script src="{$wa_url}wa-plugins/shipping/smart/js/tmpl.js?{$ss_v}"></script>
+<script src="{$wa_url}wa-plugins/shipping/smart/js/json2.js?{$ss_v}"></script>
+
+<script src="{$wa_url}wa-plugins/shipping/smart/js/templates.js?{$ss_v}"></script>
+<link href="{$wa_url}wa-plugins/shipping/smart/css/smartshipping.css?{$ss_v}" type="text/css" rel="stylesheet">
+
+<script src="{$wa_url}wa-content/js/codemirror/mode/css/css.js"></script>
+<script src="{$wa_url}wa-content/js/codemirror/mode/javascript/javascript.js"></script>
+
+<script>
+    var
+        namespace = '{$namespace|escape}',
+        zones = {$zones_settings};
+</script>
+
+<div id="smart-shipping-settings">
+
+    <div class="field">
+        <div class="name">{$p->_w('Shipping region')}</div>
+        <div class="value">
+            <select name="{$namespace|escape}[rate_zone][country]">
+                <option value=""></option>
+                {foreach $countires as $country}
+                <option value="{$country.iso3letter|escape}"{if !empty($values.rate_zone.country) && ($values.rate_zone.country == $country.iso3letter)} selected="selected"{/if}>{$country.name|escape}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="field">
+        <div class="value region">
+            <i class="icon16 loading" style="display:none; margin-left: -23px;"></i>
+            {if empty($regions)}
+                <p class="small">
+                    {$p->_w('Shipping will be restricted to the selected country. Rates defined below will be applied to the entire country.')}
+                </p>
+                <input name="{$namespace|escape}[rate_zone][region]" value="" type="hidden">
+            {else}
+                <select name="{$namespace|escape}[rate_zone][region]">
+                    <option value=""></option>
+                    {foreach $regions as $region}
+                    <option value="{$region.code|escape}"{if $values.rate_zone.region == $region.code} selected="selected"{/if}>{$region.name|escape}</option>
+                    {/foreach}
+                </select>
+                <br><br>
+                <p class="small">{$p->_w('Shipping will be restricted to the selected region.')}</p>
+            {/if}
+        </div>
+    </div>
+    
+    <div class="field">
+        <div class="name">
+            
+        </div>
+        <div class="value">
+            {$p->_w('City name')}: <input name="{$namespace|escape}[rate_zone][city]" value="{ifset($values.rate_zone.city)}" type="text">
+            <p class="hint">{$p->_w('If shipping is provided within a specific city, enter the city name so customer will not be prompted to enter city name when this shipping option is selected — city name will be automatically fetched as you specified. In case city name left blank, customer will be prompted to enter city name.')}</p>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="field">
+        <div class="name">
+            {$p->_w('Currency')}
+        </div>
+        <div class="value">
+            <select name="{$namespace|escape}[currency]">
+                {foreach $currencies as $currency}
+                    <option value="{$currency.code|escape}"
+                        {if $values.currency == $currency.code} selected="selected"{/if}>
+                            {"`$currency.title` (`$currency.code`)"|escape}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="name">
+            {$p->_w('Weight dimension unit')}
+        </div>
+        <div class="value">
+            <select name="{$namespace|escape}[weight_dimension]">
+                <option value="kg" data-value="{$p->_w('kg')}"
+                        {if $values.weight_dimension == 'kg'} selected="selected"{/if}>
+                {$p->_w('kg')}
+                </option>
+                <option value="lbs" data-value="{$p->_w('lbs')}"
+                        {if $values.weight_dimension == 'lbs'} selected="selected"{/if}>
+                {$p->_w('lbs')}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="name">
+            {$p->_w('Round cost of shipping')}
+        </div>
+        <div class="value">
+            <input type="text" name="{$namespace|escape}[currency_round]" value="{ifset($values.currency_round)}">                                    <span class="price currency">
+                                    RUB
+                                    </span>
+            <p class="hint">{$p->_w('Specify the value to which you want to round the calculated cost, eg')} <a class="inline-link small example-link" href="#"><b><i>100</i></b></a>, <a class="inline-link small example-link" href="#"><b><i>50</i></b></a>, <a class="inline-link small example-link" href="#"><b><i>0</i></b></a></p>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="name">
+            {$p->_w('Map settings')}
+        </div>
+        <div class="value">
+            {$p->_w('Coordinates of map center')}: <input name="{$namespace|escape}[map][center]" value="{ifset($values.map.center)}" type="text">
+            <p class="hint">{$p->_w('Specify coordinates of map center separated by comma, eg for Moscow\'s center —')} <a class="inline-link small example-link" href="#"><b><i>55.73, 37.75</i></b></a></p>
+
+        </div>
+        <div class="value">
+            {$p->_w('Zoom')}: <input name="{$namespace|escape}[map][zoom]" value="{ifset($values.map.zoom)}" type="text">
+            <p class="hint">{$p->_w('Zoom level. 0-23, eg')} <a class="inline-link small example-link" href="#"><b><i>9</i></b></a></p>
+
+        </div>
+        <div class="value">
+            {$p->_w('Route start point')}: <input name="{$namespace|escape}[map][route_start_point]" value="{ifset($values.map.route_start_point)}" type="text">
+            <p class="hint">{$p->_w('Specify coordinates of route start point, eg')} — <a class="inline-link small example-link" href="#"><b><i>55.753559, 37.609218</i></b></a></p>
+
+        </div>
+        <div class="value">
+            {$p->_w('Route max length')}: <input name="{$namespace|escape}[map][route_max_length]" value="{ifset($values.map.route_max_length)}" type="text">
+            <p class="hint">{$p->_w('Specify maximum length of the route in kilometers.')}</p>
+        </div>
+        <div class="value">
+            {$p->_w('Width')}: <input name="{$namespace|escape}[map][width]" value="{ifset($values.map.width)}" type="text">
+        </div>
+        <div class="value">
+            {$p->_w('Height')}: <input name="{$namespace|escape}[map][height]" value="{ifset($values.map.height)}" type="text">
+        </div>
+        <div class="value">
+            {$p->_w('Left indent')}: <input name="{$namespace|escape}[map][left]" value="{ifset($values.map.left)}" type="text">
+        </div>
+        <div class="value">
+            {$p->_w('Top indent')}: <input name="{$namespace|escape}[map][top]" value="{ifset($values.map.top)}" type="text">
+        </div>
+        <div class="value">
+            {$p->_w('Show map')}: <input name="{$namespace|escape}[map][show_map]" value="1"{if isset($values.map.show_map) && $values.map.show_map == 1} checked="checked"{/if}  type="checkbox">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="name">
+            <a href="#" class="inline-link styles-editor-link2" onclick="$(this).closest('div.field').find('div.hidden2').slideToggle(); return false;"><b><i>Редактировать стили</i></b></a>
+        </div>
+        <div class="value">
+            <div class="hidden2">
+                <textarea id="styles-textarea" name="{$namespace|escape}[styles]">{$styles|escape}</textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="name">
+            <a href="#" class="inline-link callbacks-editor-link2" onclick="$(this).closest('div.field').find('div.hidden2').slideToggle(); return false;"><b><i>Редактировать колбэки</i></b></a>
+        </div>
+        <div class="value">
+            <div class="hint hr">
+                <p>Стандартное поведение плагина можно изменить при помощи колбэков.
+                См. <a href="http://www.webasyst.ru/store/plugin/shipping/smart/manual/" target="_blank">документацию</a> или <a href="mailto:support@fullpro.ru">написать к разработчику</a>.
+                </p>
+            </div>
+            <div class="hidden2">
+                <textarea id="callbacks-textarea" name="{$namespace|escape}[callbacks]">{$callbacks|escape}</textarea>
+            </div>
+        </div>
+    </div>
+
+<hr>
+
+{include file="./zones.html"}
+
+<hr>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function() { 'use strict'
+
+        var
+            container = $('#smart-shipping-settings');
+
+        container.on('click', '.add-rate', function() {
+            var el = $(this);
+            var table = el.parents('table:first');
+            var last  = table.find('tr.rate:last');
+            var clone = last.clone();
+            
+            clone.find('input,select,textarea').each(function() {
+                var input = $(this);
+                
+                // increase index inside input name
+                var name = input.attr('name');
+                input.attr('name', name.replace(/\[rates\]\[(\d+)\]/, function(str, p1) {
+                    return '[rates][' + (parseInt(p1, 10) + 1) + ']';
+                }));
+                
+                input.val(0);
+            });
+            
+            last.after(clone);
+            // fire onchange events
+            clone.find('input,select,textarea').change();
+            
+            return false;
+        })
+        .on('click', '.example-link', function(e){
+            e.preventDefault();
+            var link = $(this), input = link.closest('div').find('input,textarea');
+            input.val(link.data('example-value')?link.data('example-value'):link.text());
+        })
+        .on('click', '.polygon-editor-link', function(e){
+            e.preventDefault();
+            var
+                link = $(this),
+                input = link.parents('div.value').first().find('textarea');
+
+
+            $(tmpl('polygon-editor', { "templatesMenu": templatesMenu })).waDialog({
+                title: 'Редактор зоны доставки',
+                className: 'fullheight',
+                buttons: '<input type="submit" value="{$p->_w('Save coordinates')}" class="button green" /> <input type="button" value="{$p->_w('Cancel')}" class="button editor-close-button" />',
+                height: '600px',
+                width: '800px',
+                onLoad: function(d) {
+
+                    $('.editor-close-button').on('click', function(e) {
+                        jQuery('.dialog:visible').trigger('esc');
+                    });
+
+                    ymaps.ready(function(){
+
+                        myMap = new ymaps.Map("editor-map-container", {
+                            center: [55.73, 37.75],
+                            zoom: 10
+                        });
+                        var parseCoordinates = function(input) {
+                            var coords;
+                            try {
+                                coords = JSON.parse(input);
+                                if (!coords.coordinates) {
+                                    throw new Error('No coordinates property');
+                                }
+                            } catch (e) {
+                                coords = { 'coordinates':[] }
+                            }
+                            return coords.coordinates;
+                        },
+                        coordinates = parseCoordinates(input.val());
+
+                        putPolygonOnMap(coordinates);
+
+                    });
+
+
+                    $('.dialog').on('click', '.template-link', function(e){
+                        var
+                            link = $(this),
+                            template_value = link.data('template-value');
+                        if (template_value != undefined && template_value != "") {
+                            myPolygon.geometry.setCoordinates(JSON.parse(template_value));
+                            adjustMapViewport();
+                        }
+                        e.preventDefault();
+                        e.stopPropagation();
+                    })
+                    .on('click', '.clear-map-link', function(e){
+                        e.preventDefault();
+
+                        if (confirm('{$p->_w('Are you sure?')}')) {
+                            myMap.geoObjects.removeAll();
+
+                            myPolygon = putPolygonOnMap([]);
+                        }
+                    });
+
+                },
+                onSubmit: function (d) {
+
+                    input.val(JSON.stringify({ 'coordinates': myPolygon.geometry.getCoordinates()}));
+
+                    //return false;
+                    d.trigger('close'); // закрыть диалог
+                    $(d).remove();
+                    return false;
+                },
+                onClose: function () {
+                    $(this).remove();
+                }
+
+
+            });
+        })
+        .on('click', '.zone-enable-checkbox', function(e){
+            var
+                checkbox = $(this),
+                menu_item = $('#zone-menu li[data-zone-index="'+checkbox.data('zone-index')+'"]'),
+                item_icon = $('#zone-menu li[data-zone-index="'+checkbox.data('zone-index')+'"] i.icon16');
+            if (checkbox.is(':checked')) {
+                menu_item.removeClass('gray');
+                item_icon.removeClass('status-gray-tiny').addClass('status-green-tiny');
+            } else {
+                menu_item.addClass('gray');
+                item_icon.removeClass('status-green-tiny').addClass('status-gray-tiny');
+            }
+        })
+        .on('keyup', '.zone-title-input', function(e){
+            var
+                input = $(this),
+                wrapper = input.parents('div.zone-content'),
+                h1 = wrapper.find('h1'),
+                tab = $('#zone-menu li[data-zone-index="'+wrapper.data('zone-index')+'"] a span'),
+                id_input = wrapper.find('.zone-id-input');
+
+            h1.text(input.val());
+            tab.text(input.val());
+
+        })
+        .on('blur', '.zone-title-input', function(e){
+            var
+                    input = $(this),
+                    wrapper = input.parents('div.zone-content'),
+                    id_input = wrapper.find('.zone-id-input');
+
+            if (input.val() && !id_input.val()) {
+                $.getJSON("?action=transliterate&str="+input.val(), function (r) {
+                    if (!id_input.val()) {
+                        var id = r.data;
+
+                        console.log('Length:'+ $('.zone-content[data-zone-id="'+id+'"]').length);
+
+                        if ($('.zone-content[data-zone-id="'+id+'"]').length > 0) {
+                            id += '-1';
+                        }
+
+                        id_input.val(id);
+                        id_input.trigger('keyup');
+                    }
+                });
+            }
+        })
+        .on('click', '.zone-delete-link', function(e){
+            e.preventDefault();
+            var link = $(this), wrapper = link.parents('div.zone-content'), tab = $('#zone-menu li[data-zone-index="'+wrapper.data('zone-index')+'"]');
+            if (confirm('{$p->_w('Are you sure?')}')) {
+                wrapper.remove();
+                tab.remove();
+                openZone(0);
+            }
+        });
+
+        container.on('click', '.delete-rate', function() {
+            var el = $(this);
+            var table = el.parents('table:first');
+            if (table.find('tr.rate').length > 1) {
+                el.parents('tr:first').remove();
+            } else {
+                el.parents('tr:first').find('input').val(0);
+            }
+            return false;
+        });
+        
+        container.find('select[name$="[currency]"]').change(function() {
+            container.find('span.currency').text(this.value);
+        }).change();
+
+        container.find('select[name$="[weight_dimension]"]').change(function () {
+            container.find('.weight.dimension').text(
+                    $('option:selected', this).attr('data-value')
+            );
+        });
+
+        (function() {
+            
+            var name    = '{$namespace|escape}[rate_zone][region]';
+            var target  = container.find('div.region');
+            var loader  = container.find('.region .loading');
+            var old_val = target.find('select, input').val();
+            
+            container.find('select[name$="[country]"]').change(function() {
+                loader.show();
+                $.post('{$xhr_url}', { country: this.value }, function(r) {
+                    if (r.data && r.data.options 
+                            && r.data.oOrder && r.data.oOrder.length) 
+                    {
+                        var select = $(
+                            "<select name='" + name + "'>" + 
+                                "<option value=''></option>" + 
+                            "</select>"
+                        );
+                        var o, selected = false;
+                        for (var i = 0; i < r.data.oOrder.length; i++) {
+                            o = $('<option></option>').attr(
+                                'value', r.data.oOrder[i]
+                            ).text(
+                                r.data.options[r.data.oOrder[i]]
+                            ).attr(
+                                'disabled', r.data.oOrder[i] === ''
+                            );
+                            if (!selected && old_val === r.data.oOrder[i]) {
+                                o.attr('selected', true);
+                                selected = true;
+                            }
+                            select.append(o);
+                        }
+                        target.html(select);
+                    } else {
+                        target.html("<input name='" + name + "' value='0' type='hidden'>");
+                    }
+                    loader.hide();
+                }, 'json');
+            });
+            
+            container.on('change', 'select[name="' + name + '"]', function() {
+                old_val = this.value;
+            });
+        })();
+
+
+        var callbacksMirror = CodeMirror.fromTextArea(document.getElementById('callbacks-textarea'), {
+            mode: "javascript",
+            tabMode: "indent",
+            height: "dynamic",
+            lineWrapping: true
+        });
+        callbacksMirror.refresh();
+        var stylesMirror = CodeMirror.fromTextArea(document.getElementById('styles-textarea'), {
+            mode: "css",
+            tabMode: "indent",
+            height: "dynamic",
+            lineWrapping: true
+        });
+        stylesMirror.refresh();
+        $('.hidden2').hide();
+
+    });
+
+</script>
+
+
+

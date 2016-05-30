@@ -59,7 +59,7 @@ SQL;
                 'control_type' => waHtmlControl::SELECT,
                 'title'        => _wp('Source language'),
                 'description'  => _wp(
-                    'Shop-Script 6 allows storing product info and database content in one language. Select primary language of your WebAsyst Shop-Script-based online store.'
+                    'Shop-Script 7 allows storing product info and database content in one language. Select primary language of your WebAsyst Shop-Script-based online store.'
                 ),
                 'options'      => array(),
             );
@@ -2182,6 +2182,8 @@ SQL;
 
             $order['params']['auth_code'] = shopWorkflowCreateAction::generateAuthCode($order['id']);
             $order['params']['auth_pin'] = shopWorkflowCreateAction::generateAuthPin();
+            $order['params']['sales_channel'] = 'import:oldwebasyst';
+
             if (!empty($order['params'])) {
 
                 $params = array_map('trim', $order['params']);

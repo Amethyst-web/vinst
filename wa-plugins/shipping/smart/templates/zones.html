@@ -1,0 +1,482 @@
+<div class="field">
+    <div class="name">{$p->_w('Shipping zones')}
+        <div class="sidebar left200px">
+            <div class="s-inner-sidebar">
+                <ul class="menu-v stack with-icons" id="zone-menu">
+
+
+
+                    <li class="top-padded" data-zone-id="_new" id="new-zone-tab">
+                        <a href="#" class="small">
+                            <i class="icon10 add"></i>{$p->_w('New shipping zone')}
+                        </a>
+                    </li>
+                </ul>
+                {*
+                <div class="block double-padded hr align-center hint">
+                    <p>{$p->_w('Zones help text')}</p>
+                </div>
+                *}
+            </div>
+        </div>
+    </div>
+    <div class="value">
+
+
+
+    <div class="content s-settings-form blank bordered-left bordered-top bordered-right bordered-bottom">
+        <div class="block double-padded" id="zone-content-wrapper">
+
+            <div class="clear-both"></div>
+        </div>
+    </div>
+
+
+
+    </div>
+</div>
+
+
+<script type="text/x-tmpl" id="zone-menu-item">
+[% for (var i=0; i<o.length; i++) { %]
+    [% var index = typeof o[i].index != 'undefined' ? o[i].index : i; %]
+    <li data-zone-id="[%=o[i].id%]" data-zone-index="[%=index%]"[% if(o[i].enabled != 1) { %]class="gray"[% } %]><a href="#"><i class="icon16 [% if(o[i].enabled) { %]status-green-tiny[% } else { %]status-gray-tiny[% } %]"></i><span>[%=o[i].title%]</span></a></li>
+[% } %]
+</script>
+
+<script type="text/x-tmpl" id="zone-content">
+[% for (var i=0; i<o.zones.length; i++) { %]
+    [% var zone = o.zones[i], index = typeof zone.index != 'undefined' ? zone.index : i, namespace = o.namespace + '[zones][' + index + ']'; %]
+<div class="zone-content" data-zone-index="[%=index%]"[% if (typeof zone.id != 'undefined'){ %] data-zone-id="[%=zone.id%]"[% } %]>
+    <div class="float-right">
+        <ul class="menu-h">
+            <li><a href="#" class="zone-delete-link"><i class="icon16 delete"></i>{$p->_w('Delete zone')}</a></li>
+        </ul>
+    </div>
+    <h1>[%=zone.title%]</h1>
+
+    <div class="fields width100px form">
+
+        <div class="field">
+            <div class="name">
+                {$p->_w('Zone title')}
+            </div>
+            <div class="value">
+                <input type="text" value="[%=zone.title%]" name="[%=namespace+'[title]'%]" class="zone-title-input" /><br>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                {$p->_w('Zone ID')}
+            </div>
+            <div class="value">
+                <input type="text" value="[%=zone.id%]" name="[%=namespace+'[id]'%]" class="zone-id-input" /><br>
+                <p class="hint">{$p->_w('Enter zone ID or it will be calculated automatically.')}</p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                {$p->_w('Enabled')}
+            </div>
+            <div class="value">
+                <input type="checkbox" value="1" name="[%=namespace+'[enabled]'%]"[% if(zone.enabled) { %]checked="checked"[% } %] data-zone-index="[%=index%]" class="zone-enable-checkbox" />
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="name">
+                {$p->_w('Zone coordinates')}
+            </div>
+            <div class="value">
+                <ul class="menu-h dropdown">
+                    <li><a href="#" class="polygon-editor-link"><i class="icon16 map"></i>{$p->_w('Editor')}</a></li>
+                </ul>
+                <a href="#" class="inline-link small" onclick="$(this).siblings('div.hidden').slideToggle(); return false;"><b><i>показать/скрыть поле</i></b></a>
+                <div class="hidden">
+                    <textarea name="[%=namespace+'[coordinates]'%]">[%=zone.coordinates%]</textarea>
+                    <p class="hint">{$p->_w('Format')}: { 'coordinates': %{$p->_w('coordinates_array')}% }</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+        <div class="name">
+            {$p->_w('Rates')}
+        </div>
+    </div>
+        <table class="zebra tariffs-zebra">
+        <thead>
+        <tr>
+            <th class="rate-by">
+                {$p->_w('Shipment amount')}
+            </th>
+            <th>
+                {$p->_w('Distance')}
+            </th>
+            <th>
+                {$p->_w('Weight')}
+            </th>
+            <th width="45%">{$p->_w('Shipping rate')}</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr class="white">
+            <td colspan="5">
+                <a class="add-rate inline-link small" href="#">
+                    <i class="icon10 add"></i> <b><i>{$p->_w('Add rate')}</i></b>
+                </a>
+            </td>
+        </tr>
+        </tfoot>
+        <tbody>
+        [% for (var j=0; j<zone.rates.length; j++) { var rates = zone.rates, rate = rates[j]; %]
+            [% var rate_namespace = namespace+'[rates]['+j+']'; %]
+            <tr class="rate">
+                <td>
+                    &gt;
+                    <input type="text"
+                           value="[%=rate.sum%]"
+                           class="refreshable input small-input"
+                           name="[%=rate_namespace+'[sum]'%]"
+                            >
+                            <span class="rate-by">
+                                    <span class="price currency">
+                                    RUB
+                                    </span>
+                                    </span>
+                </td>
+                <td>
+                    &gt;
+                    <input type="text"
+                           value="[%=rate.distance%]"
+                           class="refreshable input small-input"
+                           name="[%=rate_namespace+'[distance]'%]"
+                            >
+                            <span class="rate-by">
+                                    <span>
+                                    {$p->_w('km')}
+                                    </span>
+                                    </span>
+                </td>
+                <td>
+                    &gt;
+                    <input type="text"
+                           value="[%=string(rate.weight)%]"
+                           class="refreshable input small-input"
+                           name="[%=rate_namespace+'[weight]'%]"
+                            >
+                            <span class="rate-by">
+                                [%#weight()%]
+                            </span>
+                </td>
+                <td><select name="[%=rate_namespace+'[type]'%]" class="rate-type-select">
+                    [% for (rateTypeId in rateTypes) {
+                        if (rateTypes.hasOwnProperty(rateTypeId)) { %]
+
+                    <option value="[%=rateTypeId%]"[% if (rate.type == rateTypeId) { %] selected="selected" [% } %]>[%=rateTypes[rateTypeId].title%]</option>
+
+                    [% }} %]
+                </select>
+
+                    <div class="rate-controls">
+
+                        <input type="text"
+                               value="[%=rate.cost_fix%]"
+                               name="[%=rate_namespace+'[cost_fix]'%]"
+                               class="refreshable input small-input cost-fixed-input">
+                        <span class="currency cost-fixed-input-span">RUB</span>
+
+                        <b class="cost-distance-input-plus">+</b>
+                        <input type="text"
+                               value="[%=rate.cost_distance%]"
+                               name="[%=rate_namespace+'[cost_distance]'%]"
+                               class="refreshable input small-input cost-distance-input">
+                        <span class="cost-distance-input-span"><span class="currency">RUB</span>/{$p->_w('km')}</span>
+
+                        <b class="cost-weight-input-plus">+</b>
+                        <input type="text"
+                               value="[%=rate.cost_weight%]"
+                               name="[%=rate_namespace+'[cost_weight]'%]"
+                               class="refreshable input small-input cost-weight-input">
+                        <span class="cost-weight-input-span"><span class="currency">RUB</span>/[%#weight()%]</span>
+
+                    </div>
+
+                </td>
+                <td>
+                    <a class="delete-rate" href="#">
+                        <i class="icon16 delete"></i>
+                    </a>
+                </td>
+            </tr>
+        [% } %]
+        </tbody>
+    </table>
+    </div>
+
+    <div class="fields width100px form top-padded">
+               <div class="field">
+            <div class="name">
+                {$p->_w('Polygon options')}:
+            </div>
+            <div class="value">
+                <textarea name="[%=namespace+'[options]'%]">[%#zone.options%]</textarea>
+
+                <p class="hint">{$p->_w('Zone additional params')}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+[% } %]
+</script>
+
+<script type="text/x-tmpl" id="zone-templates-menu">
+<ul class="menu-h dropdown">
+    <li>
+      <a href="#" class="template-link"><i class="icon16 pictures"></i>{$p->_w('Templates')}<i class="icon10 darr"></i></a>
+      <ul class="menu-v with-icons">
+          [%#tmpl('zone-templates-menu-children', { 'tree_fragment': o })%]
+      </ul>
+    </li>
+    <li>
+        <a href="#" class="clear-map-link"><i class="icon16 broom"></i>{$p->_w('Clear')}</a>
+    </li>
+</ul>
+</script>
+
+<script type="text/x-tmpl" id="zone-templates-menu-children">
+    [% var fragment = o.tree_fragment; %]
+    [% for (var i=0; i<fragment.length; i++) { var object = fragment[i]; %]
+        <li>
+
+        [% if (typeof object.children != 'undefined') { %]
+            <span class="count"><i class="icon10 rarr overhanging"></i></span>
+        [% } %]
+
+        [% if (typeof object.coordinates != 'undefined') { var coordinates = JSON.stringify(object.coordinates); %]
+            <a href="#" class="template-link" data-template-value="[%=coordinates+' '%]">[%=object.title%]</a>
+        [% } else { %]
+            <a href="#" class="template-link">[%=object.title%]</a>
+        [% } %]
+
+        [% if (typeof object.children != 'undefined') { %]
+            <ul class="menu-v with-icons">
+                [%#tmpl('zone-templates-menu-children', { 'tree_fragment': object.children })%]
+            </ul>
+        [% } %]
+        </li>
+    [% } %]
+</script>
+
+<script type="text/x-tmpl" id="polygon-editor">
+    <p class='header'>{$p->_w('Click on map to start creating polygon. Click on polygon markers to call parameters.')}[%#templatesMenu%]</p>
+
+        <div id="editor-map-container"></div>
+</script>
+
+<script>
+
+
+
+    //$(function() {
+        var
+        myMap, myPolygon,
+        emptyZone = {
+            "title": "{$p->_w('New shipping zone')}",
+            "enabled": 1,
+            "coordinates": '',
+            "rates": [
+                { "sum": 0, "distance": 0, "type": 1, "cost_fix": 0, "cost_distance": 0 }
+            ]
+        },
+        weight_dimension = '{if $values.weight_dimension == 'kg'}{$p->_w('kg')}{else}{$p->_w('lbs')}{/if}',
+
+        templatesMenu = '',
+        openZone = function(index) {
+            var filter = jQuery.type(index) === "string" ? '[data-zone-id="'+index+'"]' :'[data-zone-index="'+index+'"]';
+            $('#zone-content-wrapper .zone-content, #zone-menu li').removeClass('selected').filter(filter).addClass('selected');
+        },
+
+        putPolygonOnMap = function(coordinates) {
+            myPolygon = new ymaps.Polygon(coordinates, {}, {
+                // Курсор в режиме добавления новых вершин.
+                editorDrawingCursor: "crosshair",
+                // Цвет заливки.
+                fillColor: '#00FF00',
+                // Цвет обводки.
+                strokeColor: '#0000FF',
+                // Ширина обводки.
+                strokeWidth: 2,
+                opacity: 0.8
+            });
+            // Добавляем многоугольник на карту.
+            myMap.geoObjects.add(myPolygon);
+
+            adjustMapViewport();
+
+            // В режиме добавления новых вершин меняем цвет обводки многоугольника.
+            var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
+            stateMonitor.add("drawing", function (newValue) {
+                myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
+            });
+
+            // Включаем режим редактирования с возможностью добавления новых вершин.
+            myPolygon.editor.startDrawing();
+
+
+
+            return myPolygon;
+        },
+
+        adjustMapViewport = function() {
+            if (typeof myPolygon == "object" && typeof myPolygon.geometry != "undefined") {
+                var bounds = myPolygon.geometry.getBounds();
+                if (bounds) {
+                    myMap.setBounds(myPolygon.geometry.getBounds(), {
+                        checkZoomRange: true
+                    });
+                }
+            }
+        },
+
+        rateTypes = {
+            "1": {
+                "id": "fixed",
+                "title": "{$p->_w('Fix rate')}"
+            },
+            "2": {
+                "id": "distance",
+                "title": "{$p->_w('Cost per km')}"
+            },
+            "3": {
+                "title": "{$p->_w('Fix rate + cost per km')}",
+                "includes": [1, 2]
+            },
+            "4": {
+                "id": "weight",
+                "title": "{$p->_w('Weight')}",
+            },
+            "5": {
+                "title": "{$p->_w('Weight + fix rate')}",
+                "includes": [1, 4]
+            },
+            "6": {
+                "title": "{$p->_w('Weight + distance')}",
+                "includes": [2, 4]
+            },
+            "7": {
+                "title": "{$p->_w('Weight + fix rate + cost per km')}",
+                "includes": [1, 2, 4]
+            }
+        },
+
+        rateTypeSelectsHandler = function() {
+
+            var
+                select = $(this),
+                controlsDiv = select.siblings('.rate-controls'),
+                hideAll = (function() {
+                    controlsDiv.children().hide();
+                })(),
+                showInput = (function(id, showPlus) {
+                    var
+                        input = controlsDiv.find('input.cost-' + id + '-input'),
+                        span  = controlsDiv.find('.cost-' + id + '-input-span'),
+                        plus  = controlsDiv.find('.cost-' + id + '-input-plus');
+
+                    input.show();
+                    span.show();
+
+                    if (showPlus) {
+                        plus.show();
+                    }
+                    return input.is(':visible');
+                }),
+                rateType = rateTypes[select.val()];
+
+            if (typeof rateType.id != 'undefined') {
+                showInput(rateType.id, false);
+
+            } else if (typeof rateType.includes != 'undefined') {
+                var previousVisible = false;
+                for (var i= 0, l = rateType.includes.length; i < l; i++) {
+                    var includedType = rateTypes[rateType.includes[i]];
+                    previousVisible = showInput(includedType.id, previousVisible);
+                }
+            }
+        },
+
+        string = function(str, def) {
+            def = (typeof def == 'undefined') ? '0' : def;
+            return (typeof str != 'undefined' && str != '') ? str : def;
+        },
+
+        weight = function () {
+            return '<span class="weight dimension">' + weight_dimension + '<span>';
+        }
+
+
+        // построим меню
+        console.log('zones', zones);
+        $('#zone-menu').prepend(tmpl('zone-menu-item', zones));
+
+        // построим меню шаблонов
+        templatesMenu = tmpl('zone-templates-menu', templates);
+
+        // построим контент страниц
+        $('#zone-content-wrapper').prepend(tmpl('zone-content', { 'zones': zones, 'templatesMenu': templatesMenu, 'namespace': namespace }));
+
+        // меню открывает контент
+        $('#zone-menu').on('click', 'li a', function(e){
+            e.preventDefault();
+            var a = $(this), li = a.parent('li'), index = li.data('zone-id') ? li.data('zone-id') : li.data('zone-index');
+            if (index === '_new') {
+
+                // получить наибольший индекс
+                if ($('.zone-content').length > 0) {
+                    var maxIndex = Math.max.apply(Math, $('.zone-content').map(function(){
+                        return $(this).data('zone-index');
+                    }).get()), nextIndex = maxIndex + 1;
+                } else {
+                    var maxIndex = -1, nextIndex = 0;
+                }
+
+                var newZone = emptyZone, newZoneContent;
+                newZone.index = nextIndex;
+
+
+                newZoneContent = tmpl('zone-content', { 'zones': [newZone], 'templatesMenu': templatesMenu, 'namespace': namespace });
+                if (maxIndex >= 0) {
+                    $('#zone-content-wrapper .zone-content[data-zone-index="'+maxIndex+'"]').after(newZoneContent);
+                    $('#zone-menu li[data-zone-index="'+maxIndex+'"]').after(tmpl('zone-menu-item', [newZone]));
+                } else {
+                    $('#zone-content-wrapper').prepend(newZoneContent);
+                    $('#zone-menu').prepend(tmpl('zone-menu-item', [newZone]));
+                }
+
+                $('#zone-content-wrapper .zone-content[data-zone-index="'+nextIndex+'"]').find('.rate-type-select').change();
+
+                openZone(nextIndex);
+
+                return;
+            }
+            openZone(index);
+        });
+
+        // открыть первый пункт
+        if ($('.zone-content').length > 0) {
+            openZone(0);
+        } else {
+            $('#new-zone-tab a').trigger('click');
+        }
+
+        // обработаем смену типа тарифа
+        $('#zone-content-wrapper').on('change', '.rate-type-select', rateTypeSelectsHandler);
+        $('.rate-type-select').each(rateTypeSelectsHandler);
+
+    //});
+</script>

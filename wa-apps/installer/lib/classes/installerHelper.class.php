@@ -247,7 +247,7 @@ class installerHelper
         $paths[] = $root_path.'/.git';
         foreach ($paths as $path) {
             if (file_exists($path)) {
-                $result = true;
+//                $result = true;
                 break;
             }
         }

@@ -1,0 +1,395 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wa-plugins/shipping/smart\n"
+"POT-Creation-Date: 2014-07-22 13:51+0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: K <k@0110.pro>\n"
+"Language-Team: wa-plugins/shipping/smart\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)"
+">=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: //wa-plugins/shipping/smart/lib/config/plugin.php:4
+msgid "Smart shipping"
+msgstr "Умная доставка"
+
+#: //wa-plugins/shipping/smart/lib/config/plugin.php:5
+msgid ""
+"Shipping is restricted to the specific country and region only. Shipping "
+"rate is calculated based on total amount of the shipment and shipping "
+"distance."
+msgstr ""
+"Доставка ограничивается только определенной страной и регионом. Стоимость "
+"доставки рассчитывается на основании итоговой стоимости заказа и дальности "
+"отправления."
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:23
+msgid "Estimated delivery time"
+msgstr "Ожидаемое время доставки"
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:24
+msgid ""
+"Average order transit time. Estimated delivery date will be calculated "
+"automatically and shown to customer."
+msgstr ""
+"Средний срок доставки. Приблизительная дата доставки будет рассчитана "
+"автоматически и показана покупателю."
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:27
+msgid "Same day"
+msgstr "В этот же день"
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:28
+msgid "Next day"
+msgstr "На следующий день"
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:29
+msgid "2-3 days"
+msgstr "2-3 дня"
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:30
+msgid "1 week"
+msgstr "Неделя"
+
+#: //wa-plugins/shipping/smart/lib/config/settings.php:31
+msgid "Undefined"
+msgstr "Не определено"
+
+#: //wa-plugins/shipping/smart/templates/form.html:105
+msgid "Print"
+msgstr "Печать"
+
+#: //wa-plugins/shipping/smart/templates/form.html:109
+msgid "Paid"
+msgstr "Оплачен"
+
+#: //wa-plugins/shipping/smart/templates/form.html:113
+msgid "Payment"
+msgstr "Оплата"
+
+#: //wa-plugins/shipping/smart/templates/form.html:114
+msgid "Shipping cost"
+msgstr "Стоимость доставки"
+
+#: //wa-plugins/shipping/smart/templates/form.html:118
+msgid "Comment"
+msgstr "Комментарий"
+
+#: //wa-plugins/shipping/smart/templates/form.html:150
+msgid "Shipping address"
+msgstr "Адрес доставки"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:19
+msgid "Shipping region"
+msgstr "Регион доставки"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:34
+msgid ""
+"Shipping will be restricted to the selected country. Rates defined below "
+"will be applied to the entire country."
+msgstr ""
+"Доставка ограничивается только определенной страной и регионом. Стоимость "
+"доставки рассчитывается на основании итоговой стоимости заказа либо веса "
+"отправления."
+
+#: //wa-plugins/shipping/smart/templates/settings.html:45
+msgid "Shipping will be restricted to the selected region."
+msgstr "Доставка будет ограничена только выбранным регионом."
+
+#: //wa-plugins/shipping/smart/templates/settings.html:55
+msgid "City name"
+msgstr "Название города"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:56
+msgid ""
+"If shipping is provided within a specific city, enter the city name so "
+"customer will not be prompted to enter city name when this shipping option "
+"is selected — city name will be automatically fetched as you specified. In "
+"case city name left blank, customer will be prompted to enter city name."
+msgstr ""
+"Если доставка доступна только в определенном городе, введите его название, "
+"чтобы покупателю не нужно было указывать его при выборе данного способа "
+"оплаты — название города будет показано автоматически. Если оставить это "
+"поле пустым, покупателю будет предложено ввести название города."
+
+#: //wa-plugins/shipping/smart/templates/settings.html:66
+msgid "Currency"
+msgstr "Валюта"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:82
+msgid "Round cost of shipping"
+msgstr "Округление стоимости доставки"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:88
+msgid "Specify the value to which you want to round the calculated cost, eg"
+msgstr ""
+"Укажите величину, до которой требуется округлять рассчитанную стоимость "
+"доставки, например"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:94
+msgid "Map settings"
+msgstr "Настройки карты"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:97
+msgid "Coordinates of map center"
+msgstr "Координаты центра карты"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:98
+msgid ""
+"Specify coordinates of map center separated by comma, eg for Moscow's center "
+"—"
+msgstr ""
+"Укажите координаты центра карты разделенные запятой, например для центра "
+"Москвы —"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:102
+msgid "Zoom"
+msgstr "Масштаб"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:103
+msgid "Zoom level. 0-23, eg"
+msgstr "Коэффициент масштабирования карты, 0-23, например"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:107
+msgid "Route start point"
+msgstr "Начальная точка маршрута"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:108
+msgid "Spicify coordinates of route start point, eg"
+msgstr "Укажите координаты точки, из которой рассчитывается маршрут, например "
+
+#: //wa-plugins/shipping/smart/templates/settings.html:174
+msgid "Save coordinates"
+msgstr "Сохранить координаты"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:174
+msgid "Cancel"
+msgstr "Отмена"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:261
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:96
+msgid "Shipment amount"
+msgstr "Стоимость заказа"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:102
+msgid "Shipping rate"
+msgstr "Стоимость"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:110
+msgid "Add rate"
+msgstr "Добавить тариф"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:2
+msgid "Shipping zones"
+msgstr "Зоны доставки"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:11
+#: //wa-plugins/shipping/smart/templates/zones.html:245
+msgid "New shipping zone"
+msgstr "Новая зона доставки"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:51
+msgid "Delete zone"
+msgstr "Удалить зону"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:60
+msgid "Zone title"
+msgstr "Название"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:69
+msgid "Enabled"
+msgstr "Включен"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:78
+msgid "Zone coordinates"
+msgstr "Координаты зоны"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:83
+msgid "Format"
+msgstr "Формат"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:83
+msgid "coordinates_array"
+msgstr "массив_координат"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:89
+msgid "Rates"
+msgstr "Тарифы"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:99
+msgid "Distance"
+msgstr "Расстояние"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:142
+#: //wa-plugins/shipping/smart/templates/zones.html:161
+msgid "km"
+msgstr "км"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:146
+msgid "Fix rate"
+msgstr "Фиксированная ставка"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:147
+msgid "Cost per km"
+msgstr "Цена за км пути"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:148
+msgid "Fix rate + cost per km"
+msgstr "Фиксированная ставка + цена за км пути"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:177
+msgid "Polygon options"
+msgstr "Опции зоны"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:182
+msgid "Zone additional params"
+msgstr "Дополнительные параметры зоны"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:193
+msgid "Editor"
+msgstr "Редактор"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:195
+msgid "Templates"
+msgstr "Шаблоны"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:206
+msgid ""
+"Click on map to start creating polygon. Click on polygon markers to call "
+"parameters."
+msgstr ""
+"Кликните по карте для создания зоны. Кликните по маркерам зоны для вызова "
+"параметров."
+
+#: //wa-plugins/shipping/smart/templates/zones.html:101
+msgid "Rate type"
+msgstr "Тип тарифа"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:69
+msgid "Zone ID"
+msgstr "Идентификатор зоны"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:73
+msgid "Enter zone ID or it will be calculated automatically."
+msgstr ""
+"Введите идентификатор зоны или он будет установлен как транлитерация от "
+"названия"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:165
+msgid "No routes found to the specified address"
+msgstr "Невозможно проложить маршрут по указанному адресу"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:172
+msgid "An error occurred while finding the route to the specified address"
+msgstr "Возникла ошибка при прокладке маршрута к указанному адресу"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:366
+msgid "Shipping route"
+msgstr "Маршрут доставки"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:370
+msgid "yes"
+msgstr "да"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:370
+msgid "Address on map was determined incorrectly"
+msgstr "Адрес на карте указан неверно"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:377
+msgid "Check if destination point on map was determined incorrectly"
+msgstr "Отметьте, если адрес на карте был определен неправильно"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:107
+msgid "Specify coordinates of route start point, eg"
+msgstr "Укажите координаты точки, из которой прокладывается маршрут, например"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:111
+msgid "Route max length"
+msgstr "Максимальная длина маршрута"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:112
+msgid "Specify maximum length of the route in kilometers."
+msgstr "Укажите максимальную длину маршрута в километрах"
+
+#: //wa-plugins/shipping/smart/templates/widget.html:6
+msgid "Calculate cost of shipping"
+msgstr "Рассчитать стоимость доставки"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:216
+msgid "Clear"
+msgstr "Очистить"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:148
+msgid "We do not ship to the specified address."
+msgstr "Доставка по указанному адресу не осуществляется"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:115
+msgid "Width"
+msgstr "Ширина"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:118
+msgid "Height"
+msgstr "Высота"
+
+#: //wa-plugins/shipping/smart/lib/smartShipping.class.php:158
+msgid "Specify address to calculate shipping cost"
+msgstr "Укажите адрес доставки для расчета ее стоимости"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:130
+msgid "Left indent"
+msgstr "Отступ слева"
+
+#: //wa-plugins/shipping/smart/templates/settings.html:133
+msgid "Top indent"
+msgstr "Отступ сверху"
+
+#: //wa-plugins/shipping/smart/templates/zones.html:17
+msgid "Zones help text"
+msgstr ""
+
+#: /wa-plugins/shipping/smart/templates/settings.html:90
+msgid "Weight dimension unit"
+msgstr "Единица измерения веса"
+
+#: /wa-plugins/shipping/smart/templates/settings.html:94
+#: /wa-plugins/shipping/smart/templates/settings.html:96
+#: /wa-plugins/shipping/smart/templates/zones.html:296
+msgid "kg"
+msgstr "кг"
+
+#: /wa-plugins/shipping/smart/templates/settings.html:98
+#: /wa-plugins/shipping/smart/templates/settings.html:100
+#: /wa-plugins/shipping/smart/templates/zones.html:298
+msgid "lbs"
+msgstr "фунт"
+
+#: /wa-plugins/shipping/smart/templates/zones.html:120
+#: /wa-plugins/shipping/smart/templates/zones.html:369
+msgid "Weight"
+msgstr "Вес"
+
+#: /wa-plugins/shipping/smart/templates/zones.html:372
+msgid "Weight + fix rate"
+msgstr "Фиксированная ставка + вес"
+
+#: /wa-plugins/shipping/smart/templates/zones.html:377
+msgid "Weight + distance"
+msgstr "Расстояние + вес"
+
+#: /wa-plugins/shipping/smart/templates/zones.html:381
+msgid "Weight + fix rate + cost per km"
+msgstr "Фиксированная ставка + расстояние + вес"
+
+#: /wa-plugins/shipping/smart/templates/settings.html:154
+msgid "Show map"
+msgstr "Показывать карту"

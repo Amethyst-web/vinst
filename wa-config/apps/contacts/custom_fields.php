@@ -185,6 +185,41 @@ return array (
           ),
            '_type' => 'waContactCountryField',
         )),
+        'transportnaya-k' => 
+        waContactStringField::__set_state(array(
+           'id' => 'transportnaya-k',
+           'options' => 
+          array (
+            'app_id' => 'shop',
+            'storage' => 'data',
+            'validators' => 
+            waStringValidator::__set_state(array(
+               'messages' => 
+              array (
+                'required' => 'Нужно заполнить',
+                'invalid' => 'Неверно',
+                'max_length' => 'Пожалуйста, не более 0 символов',
+                'min_length' => 'Пожалуйста, не менее 0 символов',
+              ),
+               'options' => 
+              array (
+                'required' => false,
+                'app_id' => 'shop',
+                'storage' => 'data',
+              ),
+               'errors' => 
+              array (
+              ),
+               '_type' => 'waStringValidator',
+            )),
+            'required' => '1',
+          ),
+           'name' => 
+          array (
+            'en_US' => 'Транспортная компания',
+          ),
+           '_type' => 'waContactStringField',
+        )),
         'lng' => 
         waContactHiddenField::__set_state(array(
            'id' => 'lng',

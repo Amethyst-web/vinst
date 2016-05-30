@@ -60,8 +60,8 @@ e4acebaab0576c1d72810f77bdff5dc2 *lib/classes/installerItemsAction.class.php
 0d14283b65ffbc14be3e0b626b4eabb8 *lib/classes/installerMessage.class.php
 0817e2ed5f4d448099be3070b4610c06 *lib/cli/installerApps.cli.php
 5a7b0c0f3947b12d3d58164acc791571 *lib/cli/installerHash.cli.php
-8ae3b38f4689b539284e4bd0c5a29177 *lib/config/app.php
-551a9efd6f98cf7c46ef906ec8dc4703 *lib/config/build.php
+69231fef202d10af0697293bc9a2b835 *lib/config/app.php
+e02b04492be5fdd093eef85f7484c9db *lib/config/build.php
 8cc86b01bb04d4bc733898ede749a442 *lib/config/factories.php
 c084e94f354214ccf07237d5ae5a5c83 *lib/config/installerConfig.class.php
 37bf15a645503fe87bb6dab90a5779e2 *lib/config/requirements.php

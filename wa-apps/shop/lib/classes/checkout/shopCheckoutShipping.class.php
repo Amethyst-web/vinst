@@ -85,6 +85,7 @@ class shopCheckoutShipping extends shopCheckout
             }
             $m['external'] = ($selected_shipping && $selected_shipping['id'] == $m['id']) ? 0 :$plugin->getProperties('external');
 
+//            die(var_dump($shipping_address));
             if ($plugin->isAllowedAddress($shipping_address)) {
                 if ($m['external']) {
                     $m['rates'] = array();

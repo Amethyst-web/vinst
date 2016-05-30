@@ -44,41 +44,8 @@ return array (
         'localized_names' => 'Адрес',
         'fields' => 
         array (
-          'street' => 
+          'transportnaya-k' => 
           array (
-            'localized_names' => 'Улица, дом, квартира',
-            'required' => '1',
-          ),
-          'city' => 
-          array (
-            'localized_names' => 'Город',
-            'required' => '1',
-          ),
-          'country' => 
-          array (
-            'localized_names' => 'Страна',
-            'required' => '1',
-          ),
-        ),
-      ),
-      'address.shipping' => 
-      array (
-        'localized_names' => 'Адрес доставки',
-        'fields' => 
-        array (
-          'street' => 
-          array (
-            'localized_names' => 'Улица, дом, квартира',
-            'required' => '1',
-          ),
-          'city' => 
-          array (
-            'localized_names' => 'Город',
-            'required' => '1',
-          ),
-          'country' => 
-          array (
-            'localized_names' => 'Страна',
             'required' => '1',
           ),
         ),

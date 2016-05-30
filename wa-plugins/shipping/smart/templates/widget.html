@@ -1,0 +1,71 @@
+<link href="{$public_path}css/smartshipping.css" type="text/css" rel="stylesheet">
+<link href="{$customcss_file_url}" type="text/css" rel="stylesheet">
+<script src="{$callbacks_file_url}" type="text/javascript"></script>
+<div id="smart-shipping-wrapper">
+    <div class="map-holder" style="{if $settings.map.top}top: {$settings.map.top|intval}px;{/if}{if $settings.map.left}left: {$settings.map.left|intval}px{/if}">
+
+        <div class="wa-value shipping-calc-link-holder">
+            <a class="inline-link shipping-calc-link" href="#"><i class="sys-icon16 update"></i> <b><i>{$calculate_button_title}</i></b></a>
+        </div>
+
+
+
+        <div id="smart-shipping-map"
+             {if $settings.map.show_map == 0 }
+                style="position: absolute; left: -9999px;"
+             {else}
+                style="{if $settings.map.width && $settings.map.width|intval > 0}width: {$settings.map.width|intval}px; {/if}{if $settings.map.height && $settings.map.height|intval > 0}height: {$settings.map.height}px{/if}"
+             {/if}
+        ></div>
+        <input name="smart_shipping_{$shipping_plugin_id}_distance" id="smart-shipping-{$shipping_plugin_id}-distance" value="_" type="hidden" />
+        <input name="shipping_{$shipping_plugin_id}[smart_shipping_data]" id="smart-shipping-data" type="hidden" />
+
+    </div>
+    {if $settings.map.show_map == 1 }
+        <div class="map-placeholder" style="{if $settings.map.width && $settings.map.width|intval > 0}width: {$settings.map.width|intval}px; {/if}{if $settings.map.height && $settings.map.height|intval > 0}height: {$settings.map.height|intval}px{/if}"></div>
+    {/if}
+</div>
+<script type="text/javascript">
+
+    var mapSettings = {
+        center: [{$settings.map.center}],
+        zoom: {$settings.map.zoom},
+        autoFitToViewport: 'always',
+        controls: ['zoomControl', 'fullscreenControl', 'rulerControl'],
+        showMap: {$settings.map.show_map|intval}
+    },
+    routeStartPoint = [{$settings.map.route_start_point}],
+    zones = {$settings.zones},
+    smart_shipping_id = {$shipping_plugin_id},
+    max_route_distance = {$settings.map.route_max_length};
+
+    $(function(){
+
+        $('li.shipping-'+smart_shipping_id+ ' .wa-form').each(function(){
+            $(this).data({ 'position': $(this).css('position'), 'left': $(this).css('left') });
+            $(this).css({ position: 'absolute', 'left': '-9999px' });
+        });
+
+        //$(".shipping-" + smart_shipping_id + " .price").html('<i class="icon16 loading"></i>');
+
+        $.getScript('//api-maps.yandex.ru/2.1/?lang={$wa->locale()}', function() {
+
+            $.getScript("{$public_path}js/smartshipping.js")
+                .done(function(script, textStatus) {
+                    ymaps.ready(init);
+                })
+                .fail(function( jqxhr, settings, exception ) {
+                    console.log( "Triggered ajaxError handler.", exception);
+                });
+        });
+
+        $(document).ajaxComplete(function( event, xhr, settings ) {
+            if (settings.url === "{$wa->getUrl('/frontend/shipping')}") {
+                smartShippingResponseCallback(JSON.parse(xhr.responseText));
+            }
+        });
+    })
+
+</script>
+
+

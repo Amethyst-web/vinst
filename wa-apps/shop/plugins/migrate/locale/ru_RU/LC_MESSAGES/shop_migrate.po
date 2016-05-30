@@ -11,7 +11,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "Language: ru_RU\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
@@ -205,8 +205,8 @@ msgid "Source language"
 msgstr "Исходный язык"
 
 #: /wa-apps/shop/plugins/migrate/lib/transport/shopMigrateWebasystTransport.class.php:108
-msgid "Shop-Script 6 allows storing product info and database content in one language. Select primary language of your WebAsyst Shop-Script-based online store."
-msgstr "Shop-Script 6 позволяет хранить информацию о товарах и содержимое базы данных на одном языке. Выберите основной язык вашего магазина на базе WebAsyst Shop-Script."
+msgid "Shop-Script 7 allows storing product info and database content in one language. Select primary language of your WebAsyst Shop-Script-based online store."
+msgstr "Shop-Script 7 позволяет хранить информацию о товарах и содержимое базы данных на одном языке. Выберите основной язык вашего магазина на базе WebAsyst Shop-Script."
 
 #: /wa-apps/shop/plugins/migrate/lib/transport/shopMigrateWebasystTransport.class.php:135
 msgid "Currency"
@@ -547,4 +547,3 @@ msgstr "Импортировать все товары, категории, по
 #: /wa-apps/shop/plugins/migrate/lib/transport/shopMigrateWebasystTransport.class.php:162
 msgid "Import only orders and customers starting from"
 msgstr "Импортировать только заказы и покупателей начиная с указанной даты"
-

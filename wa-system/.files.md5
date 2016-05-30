@@ -1,6 +1,6 @@
 a285da79a1cf95556e4eb1fd40059097 *.htaccess
 11a6f4aeaaec1ac941ca7eea9fdb8620 *api/api.php
-f839cb5efe350b8a250a4d5ba35dca9e *api/waAPIController.class.php
+540c1e17618b7e41117d827000f1271c *api/waAPIController.class.php
 7ab4e90d77958366dc0ba8c89df68fc2 *api/waAPIDecorator.class.php
 8f4e641b14e073b408eb2b84fc7d7dc6 *api/waAPIDecoratorJSON.class.php
 59f42bbb9103003fc2b37142374917b6 *api/waAPIDecoratorXML.class.php
@@ -18,7 +18,7 @@ a1dcf4eaa6532df08ec82c563f4a3662 *auth/waAuth.class.php
 9d9d9a4b04c23fe45191568355cb9747 *auth/waOAuth2Adapter.class.php
 952a2dd489775ed42e7bb89bf7e8942e *auth/waiAuth.interface.php
 0a04b3fed1bbed4c88d304814e526d94 *autoload/waAutoload.class.php
-56040f686c3603d5eba89c39e7ae8b3b *cache/adapters/waFileCacheAdapter.class.php
+bd9647b50d1f92c52233572fca9440f6 *cache/adapters/waFileCacheAdapter.class.php
 b911034999dec2d01782dca1b2649172 *cache/adapters/waMemcachedCacheAdapter.class.php
 aa644d4507434b39812411d978c17427 *cache/adapters/waXcacheCacheAdapter.class.php
 fd1897eec08f64b58a08e701ae39b0da *cache/waCache.class.php
@@ -690,8 +690,8 @@ d012efe1d0a7d9031f81365734067d66 *webasyst/lib/cli/webasystCreateLayout.cli.php
 d6417b61e2dc3ca091ac0718ef86a87f *webasyst/lib/cli/webasystCreateWidget.cli.php
 71adba3633d6354f3089593e00e8757c *webasyst/lib/cli/webasystGenerateDb.cli.php
 f0e0ec3c270e5e150617b60d4d124902 *webasyst/lib/cli/webasystHelp.cli.php
-da91513f6c2f0fc3d4d0107bc50230d3 *webasyst/lib/config/app.php
-551a9efd6f98cf7c46ef906ec8dc4703 *webasyst/lib/config/build.php
+5fa5ed1a7fc1e55cba0d73e5481a27cf *webasyst/lib/config/app.php
+e02b04492be5fdd093eef85f7484c9db *webasyst/lib/config/build.php
 43d237a77b1521d2521a1fd60689661d *webasyst/lib/config/db.php
 d2f41e6c5bd5ac9d009247198af3a938 *webasyst/lib/config/install.php
 c366a90fb6af4250e37f8b6c5e876904 *webasyst/lib/config/wa_country.sql
