@@ -54,7 +54,7 @@
         <div class="well">
             <div class="row">
                 {if !empty($product.features)}
-                <div class="col-xs-6 col-sm-5 col-md-7">
+                <div class="col-xs-6 col-sm-5 col-md-7 feature">
                     {foreach $product.features as $feat_key => $feat}
                         <strong>{$features[$feat_key].name}:</strong>
                         <span id="feature_{$features[$feat_key].id}">

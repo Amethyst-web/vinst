@@ -27,7 +27,7 @@ function Product(form, options) {
 
     this.form.find('.color-selector [type=radio]').change(function(){
         $(this).closest('.color-selector').find('.sku-feature').val($(this).val()).change();
-        $('.feature').find('#feature_'+$(this).data('feature-id')).html('<span style="white-space: nowrap;"> <i class="icon16 color" style="'+$(this).data('style')+'"></i>'+$(this).data('name')+'</span>');
+        $('.feature').find('#feature_'+$(this).data('feature-id')).html('<span style="white-space: nowrap;"> '+$(this).data('name')+'</span>');
     });
 
     this.form.find('select.sku-feature').change(function(){
