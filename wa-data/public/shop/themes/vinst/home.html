@@ -1,1 +1,17 @@
+<div class="brands">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>[`Бренды`]</h2>
+        </div>
+    </div>
+    <div class="row">
+        {foreach shopProductbrandsPlugin::getBrands() as $b}
+            {if $b.image}
+                <div class="col-xs-3">
+                    <a title="{$b.name}" href="/category/?brand={$b.name}"><img alt="{$b.name}" src="{$wa_url}wa-data/public/shop/brands/{$b.id}/{$b.id}{$b.image}"></a>
+                </div>
+            {/if}
+        {/foreach}
+    </div>
+</div>
 {shopCategoriesPlugin::GetCategories()}

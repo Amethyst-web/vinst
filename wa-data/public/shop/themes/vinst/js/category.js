@@ -3,8 +3,9 @@
  */
 $(document).on('filterProductsList', function(){
     var filters = {};
-    var brandValue = $('[name=brand]:checked').val();
-    if($('[name=brand]').length !== 0 && brandValue !== undefined){
+    var $brandInput = $('[name=brand]');
+    var brandValue = $brandInput.val();
+    if($brandInput.length !== 0 && brandValue !== undefined){
         filters.brand = brandValue;
     }
     var colorValues = [];

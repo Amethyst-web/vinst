@@ -7,6 +7,8 @@
                 <div class="well well-small">
                     {shopCategoryListPlugin::getCategories()}
                     {shopColorListPlugin::getColors($category.id, $smarty.get.color)}
+                    {$brands = shopProductbrandsPlugin::getBrands()}
+                    <input type="hidden" value="{$brands[$smarty.get.brand].name}" name="brand">
                 </div>
             </div>
         </div>

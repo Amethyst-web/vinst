@@ -1,0 +1,7 @@
+<ul class="menu-v brands">
+{foreach $brands as $b}
+    <li {if $b.name == $wa->param('brand')}class="selected"{/if}>
+        <a href="{$b.url}">{$b.name|escape}</a>
+    </li>
+{/foreach}
+</ul>

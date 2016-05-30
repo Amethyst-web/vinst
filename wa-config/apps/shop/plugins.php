@@ -6,5 +6,6 @@ return array (
     'cartmini' => true,
     'categories' => true,
     'categoryList' => true,
-    'colorList' => true
+    'colorList' => true,
+    'productbrands' => true
 );
