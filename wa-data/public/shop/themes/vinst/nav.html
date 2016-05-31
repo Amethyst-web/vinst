@@ -16,7 +16,6 @@
                     <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
                     <li><a href="/category">[`Каталог`]</a></li>
                     <li><a href="category.html">[`О компании`]</a></li>
-                    <li><a href="category.html">[`Контакты`]</a></li>
                     <li><a href="category.html">[`Доставка и оплата`]</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -26,19 +25,21 @@
                             <li>
                                 <div class="dropdown-content">
                                     <address>
-                                        <strong>CompanyName</strong><br>
-                                        Address 123<br>
-                                        Zipcode, State and City
+                                        <strong>{$wa->param("company")}</strong><br>
+                                        {$wa->param("ur_address")}<br>
                                     </address>
                                 </div>
                             </li>
                             <li class="divider"></li>
                             <li>
                                 <div class="dropdown-content">
-                                    <strong>Phone</strong>: 012-345 67 89<br>
+                                    <strong>[`Телефон`]</strong>: {$wa->param("phone")}<br>
                                 </div>
                             </li>
-                            <li><a href="contact.html"><strong>E-mail</strong>: info@example.com</a></li>
+                            <li>
+                                <a href="mailto:{$wa->param('email_sales')}"><strong>[`Отдел продаж`]</strong>: {$wa->param('email_sales')}</a>
+                                <a href="mailto:{$wa->param('email_snab')}"><strong>[`Отдел снабжения`]</strong>: {$wa->param('email_snab')}</a>
+                            </li>
                         </ul>
                     </li>
                     {shopCartminiPlugin::getCart()}

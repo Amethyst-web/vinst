@@ -144,3 +144,6 @@ input[type=radio]{
 .brands{
     margin-bottom: 20px;
 }
+.dropdown-content{
+    width: auto;
+}

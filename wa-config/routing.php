@@ -9,6 +9,11 @@ return array (
     array (
       'url' => '*',
       'app' => 'shop',
+      'email_sales' => 'vinstsales@mail.ru',
+      'email_snab' => 'vinstsnab@mail.ru',
+      'phone' => '8(495) 005-17-25',
+      'company' => 'ООО "Винст"',
+      'ur_address' => 'г. Москва, Красная площадь, 1',
       'theme' => 'vinst',
       'theme_mobile' => 'vinst',
       'locale' => 'ru_RU',

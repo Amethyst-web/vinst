@@ -5,7 +5,8 @@
             <li class="cart-item">
                 <a href="{$wa->shop->productUrl($item.product)}">
                     <span class="pull-left">
-                        <small>{$item.quantity}x</small> {if $item.sku_name && $item.sku_name != "" && $item.sku_name != $item.product.name}{$item.sku_name|escape}{else}{$item.product.name|escape}{/if}
+                        {*$item|@var_dump*}
+                        <small>{$item.quantity}x</small> {if $item.sku_name && strlen($item.sku_name) != 0 && $item.sku_name != $item.product.name}{$item.sku_name|escape}{else}{$item.product.name|escape}{/if}
                     </span>
                     &nbsp;
                     <small class="pull-right label label-info">{shop_currency_html($item.full_price, true)}</small>
