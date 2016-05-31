@@ -23,6 +23,8 @@ class shopCategoryListPlugin extends shopPlugin{
         }
         $categories = new shopCategories();
         $view = wa()->getView();
+        $categoryList = $categories->getList();
+        shopCategories::setExpanded(array_keys($categoryList), true);
         $view->assign('categories', $categories->getList());
         return $view->fetch(static::getPluginTemplatePath());
     }
