@@ -1,0 +1,16 @@
+{$_product = $wa->shop->product($product.id)}
+<div class="row">
+    <div class="col-xs-9">
+        <h2>{$page.name}</h2>
+    </div>
+    <div class="col-xs-3">
+        {include file="`$wa_active_theme_path`/_share_block.html" inline}
+    </div>
+</div>
+<!-- END CONTENT ITEM -->
+
+<div class="row product-detail">
+    <div class="col-xs-12">
+        {$page.content}
+    </div>
+</div>
