@@ -260,7 +260,7 @@ function getAddressString() {
 }
 
 function smartShippingResponseCallback(data) {
-
+    console.log(data);
     if (data.status == 'ok') {
         dataInput.val(data.data[0].text);
     }

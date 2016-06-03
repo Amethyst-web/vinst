@@ -182,7 +182,6 @@ class smartShipping extends waShipping
         }
 
         $distances = @json_decode($distances, true);
-
         ///////////////
 
         $orderPrice = $this->getPackageProperty('price');
@@ -191,13 +190,13 @@ class smartShipping extends waShipping
         $text = '';
 
         if (is_array($distances) && is_array($this->zones)) {
-
             $zones = array();
             foreach ($this->zones as $zone) {
                 $zoneId = isset($zone['id']) && $zone['id'] != '' ? $zone['id'] : self::transliterate($zone['title'], true);
                 $zones[$zoneId] = $zone;
             }
 
+            $i = 0;
             foreach ($distances as $zoneId => $distance) {
 
                 if (!isset($distance['in']) && !isset($distance['boundary'])) {
@@ -219,8 +218,7 @@ class smartShipping extends waShipping
                 foreach ($rates as $rate) {
                     $rate = array_map('floatval', $rate);
 
-                    if ($rate['sum'] <= $orderPrice && $rate['distance'] <= $totalDistance && $rate['weight'] <= $orderWeight) {
-
+                    if ($rate['sum'] <= $orderPrice && $rate['distance'] <= $totalDistance && $rate['weight'] <= $orderWeight && $totalDistance > 0) {
                         $zonePrice = 0;
                         $zoneText = $zones[$zoneId]['title'].': '.$totalDistance.'км, ';
 

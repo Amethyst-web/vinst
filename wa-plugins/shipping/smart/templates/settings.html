@@ -197,7 +197,8 @@
         var
             container = $('#smart-shipping-settings');
 
-        container.on('click', '.add-rate', function() {
+        container.on('click', '.add-rate', function(e) {
+            e.preventDefault();
             var el = $(this);
             var table = el.parents('table:first');
             var last  = table.find('tr.rate:last');
